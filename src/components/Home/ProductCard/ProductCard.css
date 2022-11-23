@@ -1,0 +1,29 @@
+.card {
+    margin: 0 !important;
+    padding: 15px;
+}
+.card-title {
+    min-height: 60px;
+    font-size: 17px;
+}
+.imageDiv {
+    max-height: 250px;
+    min-height: 250px;
+}
+img {
+    padding: 15px;
+    max-height: 250px;
+    min-height: 250px;
+}
+.card-description {
+    font-size: 14px;
+    text-align: justify;
+}
+.footer {
+   display: flex;
+   justify-content: center;
+}
+.card-rating {
+    display: flex;
+    align-items: center;
+}
