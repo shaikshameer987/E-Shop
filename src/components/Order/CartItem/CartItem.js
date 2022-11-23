@@ -11,7 +11,7 @@ function CartItem(props) {
                     alt="...">
                 </img>
             </div>
-            <div class="DetailContainer col-6">
+            <div class="DetailContainer col-7">
                 <h5 class="title">{props.item.name}</h5>
                 <p class="description">{props.item.detail}</p>
                 <div className='qtyDiv'>
@@ -30,7 +30,7 @@ function CartItem(props) {
                     </select>
                 </div>
             </div>
-            <div class="priceContainer col-2"> 
+            <div class="priceContainer col-1"> 
                 <h5>Price</h5>
                 <h6>₹ {props.item.price}</h6>                   
             </div>

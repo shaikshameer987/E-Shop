@@ -1,12 +1,12 @@
 .bi-shop {
     margin-right: 10px;
+    fill: white;
 }
 .links {
     justify-content: flex-end;
+    color: white;
 }
 .hd-navbar {
-    background-color: #e3f2fd;
-}
-.nav-link {
-    color: black !important;
+    background-color: #232F3E;
+    height: 50px
 }

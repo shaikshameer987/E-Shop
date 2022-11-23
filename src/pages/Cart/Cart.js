@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import CartItem from '../../components/Order/CartItem/CartItem'
+import Header from '../../components/Shared/Header/Header';
+import Footer from '../../components/Shared/Footer/Footer';
 import "./Cart.css"
 
 function Cart() {
@@ -13,6 +15,8 @@ function Cart() {
             })
     })
     return (
+        <>
+        <Header />
         <div className='cartItemsContainer'>
             <h3 className='cartHeader'>Shopping Cart</h3>
             <hr></hr>
@@ -20,6 +24,8 @@ function Cart() {
                     <CartItem item = {item}/>
             ))}
         </div>
+        <Footer />
+        </>
     )
 }
 
