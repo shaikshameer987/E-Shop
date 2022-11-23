@@ -1,0 +1,17 @@
+.footer {
+    background-color: #232F3E;
+    color: white;
+}
+.list {
+    width: 90%;
+    margin: auto;
+}
+ul {
+    list-style: none;
+    padding: 0 !important;
+}
+a {
+    color: white !important;
+    text-decoration: none !important;
+    font-size: 14px;
+}

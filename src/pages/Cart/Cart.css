@@ -1,0 +1,11 @@
+.cartItemsContainer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 75%;
+    background-color: rgb(126, 255, 212,0.2) !important;
+}
+.cartHeader {
+    margin-bottom: 0;
+}
