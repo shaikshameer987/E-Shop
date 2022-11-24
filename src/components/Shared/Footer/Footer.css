@@ -2,16 +2,24 @@
     background-color: #232F3E;
     color: white;
 }
-.list {
+.footer-row1 {
     width: 90%;
-    margin: auto;
+    margin: auto !important;
+    padding: 20px 0px;
 }
-ul {
+.footer-column {
+    padding: 10px;
+}
+.footer-row1-lists {
     list-style: none;
     padding: 0 !important;
 }
-a {
+.navbar-list-item {
     color: white !important;
     text-decoration: none !important;
     font-size: 14px;
+}
+.footer-list-heading {
+    margin: 0;
+    padding-bottom: 25px;
 }

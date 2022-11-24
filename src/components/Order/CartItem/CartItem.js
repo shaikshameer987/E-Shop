@@ -1,38 +1,55 @@
 import React from 'react'
 import "./CartItem.css"
+import { useState } from 'react'
 
 function CartItem(props) {
+    const [itemQty, setItemQty] = useState(1)
+    function handleQtyChange(event) {
+        let prevQty = Number(event.target.closest('.qty-div').querySelector('.item-qty').innerText) 
+        let cartPriceElement = event.target.closest('.cartItemsContainer').querySelector('.total-price')
+        let itemPrice = Number(event.target.closest('.priceContainer').querySelector('.price').innerText)/prevQty
+        if(event.target.innerText === "+"){
+            cartPriceElement.innerText = +cartPriceElement.innerText + (+itemPrice)
+            setItemQty(prevQty + 1)    
+        }else{
+            cartPriceElement.innerText = +cartPriceElement.innerText - (+itemPrice)
+            if((prevQty - 1) == 0){
+                let item = event.target.closest('.cartItem')
+                item.remove()
+                return
+            }
+            setItemQty(prevQty-1)
+        }        
+    }
     return (
-        <div class="cartItem">
-            <div class="imageContainer col-4">
+        <div className="cartItem">
+            <div className="image-container col-lg-2 col-sm-3 col-4">
                 <img 
                     src= {props.item.image}
-                    class="img-fluid rounded-start" 
+                    className="product-image" 
                     alt="...">
                 </img>
             </div>
-            <div class="DetailContainer col-7">
-                <h5 class="title">{props.item.name}</h5>
-                <p class="description">{props.item.detail}</p>
-                <div className='qtyDiv'>
-                    <span className='qty'>Qty &nbsp;:</span> &nbsp;
-                    <select className='quantity'>
-                        <option value="1" className='listItem'>1</option>
-                        <option value="2" className='listItem'>2</option>
-                        <option value="3" className='listItem'>3</option>
-                        <option value="4" className='listItem'>4</option>
-                        <option value="5" className='listItem'>5</option>
-                        <option value="6" className='listItem'>6</option>
-                        <option value="7" className='listItem'>7</option>
-                        <option value="8" className='listItem'>8</option>
-                        <option value="9" className='listItem'>9</option>
-                        <option value="10" className='listItem'>10</option>
-                    </select>
-                </div>
+            <div className="detail-container col-lg-7 col-sm-6 col-5">
+                <h5 className="title">{props.item.name}</h5>
+                <p className="description">{props.item.detail}</p>
             </div>
-            <div class="priceContainer col-1"> 
+            <div className="priceContainer col-lg-3 col-3"> 
                 <h5>Price</h5>
-                <h6>₹ {props.item.price}</h6>                   
+                <h6>₹ <span className='price'>{itemQty * props.item.price}</span></h6>   
+                <div className='qty-div'>
+                <button 
+                    className="minus-button bg-danger"
+                    onClick={(event) => handleQtyChange(event)}
+                > – </button>
+                <div className='item-qty'>
+                    <span className='qty'>{itemQty}</span>
+                </div>
+                <button 
+                    className="plus-button bg-primary"
+                    onClick={(event) => handleQtyChange(event)}
+                > + </button>
+                </div>                
             </div>
         </div>
     )

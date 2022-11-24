@@ -1,5 +1,10 @@
-.row {
+.products-container {
+    background-color: rgb(191, 250, 230);
+    padding-top: 10px;
     margin: 0 !important;
     padding: 20px 10px !important;
-    row-gap: 20px;
+    row-gap: 10px;
+}
+a {
+    text-decoration: none !important; 
 }

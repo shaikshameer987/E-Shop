@@ -17,8 +17,8 @@ input {
     outline: none;
     padding: 5px 10px; 
 }
-.row {
-    padding: 0 !important;
+.container {
+    padding: 0;
 }
 .address-label {
     margin-bottom: 0 !important;
@@ -33,10 +33,10 @@ input {
     margin: auto;
     width: max-content;
 }
-input::-webkit-outer-spin-button,
+/* input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-}
+} */
 .gotologin {
     color: blue !important;
     font-size: 16px;

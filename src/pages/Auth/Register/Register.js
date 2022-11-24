@@ -1,11 +1,14 @@
 import React from 'react'
 import "./Register.css"
 import {useState} from 'react'
+import { useNavigate } from "react-router-dom";
 
 function Register() {
     const [user, setUser] = useState({})
+    const navigate = useNavigate()
     function handleFormSubmit(event) {
         console.log(user)
+        navigate("/login")
     }
     return (
         <div className='register-form'>
@@ -120,12 +123,11 @@ function Register() {
                     </div>
                 </div>
                 <div className='submitDiv px-2 mb-2'>
-                    <button type="submit" className='btn btn-success'>Regsiter</button>
+                    <button type="submit" className='btn btn-success'>Register</button>
                 </div>
                 <div className='gotologinDiv'>
-                    <a href='' className='gotologin'>Already have an Account</a>
+                    <a href='/login' className='gotologin'>Already have an Account</a>
                 </div>
-                
             </form>
         </div>
     )

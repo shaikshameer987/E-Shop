@@ -17,7 +17,7 @@ function Home() {
     return (
         <>
             <Header />
-            <div className="row">
+            <div className="row products-container">
                 {products.map((product) => (
                         <div className="CardWrapper col-3" key = {product.id}>
                             <ProductCard product = {product}/>
