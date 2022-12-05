@@ -41,4 +41,13 @@
 .addcart-buttondiv {
     display: flex;
     justify-content: center;
- }
+}
+
+.addcart-buttondiv button {
+    width: 180px;
+}
+
+.addtocart:active {
+    transform: scale(0.98);
+    transition: 90ms;
+}

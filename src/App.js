@@ -8,14 +8,14 @@ import LogIn from './pages/Auth/LogIn/LogIn';
 function App() {
     return (
         <div className="App">
-			{/* <BrowserRouter>
+			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Home />}></Route>
-					<Route path="/register" element={<Register />}></Route>
-					<Route path="/login" element={<LogIn />}></Route>
+					<Route path="register" element={<Register />}></Route>
+					<Route path="login" element={<LogIn />}></Route>
+					<Route path="cart" element={<Cart />}></Route>
 				</Routes>
-			</BrowserRouter> */}
-			<Cart />
+			</BrowserRouter>
       	</div>
   	);
 }

@@ -23,8 +23,11 @@
     list-style: none;
 }
 .user-list-item {
-    padding-right: 10px;
+    padding-right: 20px;
 }
 .user-nav-link {
+    color: white;
+}
+.cart-button {
     color: white;
 }
