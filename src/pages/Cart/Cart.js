@@ -3,43 +3,21 @@ import CartItem from '../../components/Order/CartItem/CartItem'
 import Header from '../../components/Shared/Header/Header';
 import Footer from '../../components/Shared/Footer/Footer';
 import "./Cart.css"
+import { useCart } from '../../Context/CartContext';
 
 function Cart() {
-    const [cartItems, setCartItems] = useState([])
+
+    const {cartItems} = useCart()
     const [totalPrice, setTotalPrice] = useState(0) 
-
-    useEffect(() => {
-        let cart = localStorage.getItem('cart')
-        let cartItems = JSON.parse(cart)
-        if(cartItems){
-            setCartItems(cartItems)
-            updateTotalPrice(cartItems)
-        }
-    },[])
-
-    function updatePrice(item, newQty) {
-        let items = cartItems
-        let cartItemIndex = items.findIndex((i) => i.name === item.name)
-        items[cartItemIndex].qty = newQty
-        updateTotalPrice(items)
-    }
-
-    function updateTotalPrice(res) {
-        let updatedPrice = 0
-        for(let i = 0; i < res.length; i++){
-            updatedPrice += +(res[i].price) * +(res[i].qty)
-        }
-        setTotalPrice(updatedPrice)
-    }
-
-    function deleteItem(item) {
-        let items = cartItems
-        let index = items.findIndex((i) => i.name === item.name)
-        items.splice(index, 1)
-        setCartItems([...items])
-        updateTotalPrice(items)
-    }
     
+    useEffect(() => {
+        let totalAmount = 0
+        for(let i = 0; i < cartItems.length; i++){
+            totalAmount += cartItems[i].price * cartItems[i].qty
+        }
+        setTotalPrice(totalAmount)
+    },[cartItems])
+
     return (
         <>
         <Header />
@@ -58,10 +36,7 @@ function Cart() {
             { cartItems.map((item,index) => (
                     <CartItem 
                         item = {item} 
-                        key = {item.title + item.price} 
-                        index = {index} 
-                        updatePrice = {updatePrice}
-                        deleteItem = {deleteItem}
+                        key = {item.title + item.price}  
                     />
             )) }
         </div>

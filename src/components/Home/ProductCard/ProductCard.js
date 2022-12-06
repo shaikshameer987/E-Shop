@@ -1,27 +1,16 @@
 import React from 'react'
 import './ProductCard.css'
+import { useCart } from '../../../Context/CartContext'
 
 function ProductCard(props) {
+
+    const {dispatch} = useCart()    
+
     let ratings = Math.round(props.item.rating.rate)
     let ratingsArr = new Array(ratings).fill("")
     let svg = <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="gold" className="bi bi-star-fill" viewBox="0 0 16 16">
                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
             </svg>
-    function handleAddtoCart() {
-        let cart = localStorage.getItem('cart')
-        let cartItems = []
-        if(cart === null || cart.length === 0) {
-            cartItems.push(props.item)
-        }else{
-            cartItems = JSON.parse(cart)
-            let index = cartItems.findIndex((item) => item.title === props.item.title)
-            if(index === -1){
-                cartItems.push(props.item)
-            }
-        }
-        localStorage.setItem('cart',JSON.stringify(cartItems))
-        props.updateCount()
-    }
 
   return (
         <div className="card product-item">
@@ -41,10 +30,12 @@ function ProductCard(props) {
                     ))
                 } &nbsp; {props.item.rating.count}</p>
                 <p className="product-price">₹ {props.item.price}</p>
-                <p className="product-description">{props.item.description}</p>
+                <div className='desc-div'>
+                    <p className="product-description">{props.item.description}</p>
+                </div>
             </div>
             <div className='addcart-buttondiv'>
-                <button className="btn btn-primary addtocart" onClick={() => handleAddtoCart()}>Add to Cart</button>
+                <button className="btn btn-primary addtocart" onClick={() => dispatch({type : "addItem", data : props.item})}>Add to Cart</button>
             </div>
         </div>
     )

@@ -1,31 +1,21 @@
 import React from 'react'
 import "./CartItem.css"
-import { useState } from 'react'
+import { useCart } from '../../../Context/CartContext'
 
 function CartItem(props) {
-    const [itemQty, setItemQty] = useState(1)
-    const [itemTotalPrice, setItemTotalPrice] = useState(props.item.price)
 
+    const {dispatch} = useCart()
+    
     function handleQtyChange(newQty) {
         if(newQty > 0){
-            setItemQty(newQty)
-            setItemTotalPrice(props.item.price * newQty)
+            props.item.qty = newQty
+            dispatch({type : "changeQty", data : props.item})
         }else{
-            setItemQty(0)
-            setItemTotalPrice(0)
+            props.item.qty = 0
+            dispatch({type : "changeQty", data : props.item})
         }
-        props.updatePrice(props.item,newQty)
     }
 
-    function handleItemDelete() {
-        props.deleteItem(props.item)
-        let cartItems = localStorage.getItem('cart')
-        let cart = JSON.parse(cartItems)
-        let index = cart.findIndex((i) => i === props.item)
-        cart.splice(index,1)
-        localStorage.setItem('cart',JSON.stringify(cart))
-    }
-    
     return (
         <div className="cartItem">
             <div className="image-container col-lg-2 col-sm-3 col-4">
@@ -40,23 +30,23 @@ function CartItem(props) {
                 <p className="description">{props.item.description}</p>
             </div>
             <div className="priceContainer col-lg-3 col-3"> 
-                <p className='itemTotalPrice'>₹ {Math.round(itemTotalPrice)}</p>   
+                <p className='itemTotalPrice'>₹ {Math.round(props.item.price * props.item.qty)}</p>   
                 <div className='qty-div'>
                 <button 
                     className="minus-button bg-danger"
-                    onClick={() => handleQtyChange(itemQty <= 1 ? 0 : itemQty - 1)}
+                    onClick={() => handleQtyChange(props.item.qty <= 1 ? 0 : props.item.qty - 1)}
                 > – </button>
                 <div className='item-qty'>
-                    <span className='qty'>{itemQty}</span>
+                    <span className='qty'>{props.item.qty}</span>
                 </div>
                 <button 
                     className="plus-button bg-primary"
-                    onClick={() => handleQtyChange(itemQty + 1)}
+                    onClick={() => handleQtyChange(props.item.qty + 1)}
                 > + </button>
                 </div> 
                 <button 
                     className='btn btn-outline-danger btn-sm deleteItem mt-2'
-                    onClick = {() => handleItemDelete()}
+                    onClick = {() => dispatch({type : "removeItem", data : props.item})}
                 >Delete</button>          
             </div>
         </div>

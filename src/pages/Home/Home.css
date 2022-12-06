@@ -3,8 +3,16 @@
     padding-top: 10px;
     margin: 0 !important;
     padding: 20px 10px !important;
-    row-gap: 10px;
+    row-gap: 20px;
 }
 a {
     text-decoration: none !important; 
+}
+.loading {
+    font-size: 40px;
+    font-weight: bold;
+    width: max-content !important;
+}
+.spinner-border {
+    display: inline;
 }

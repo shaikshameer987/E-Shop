@@ -17,18 +17,25 @@ function Home() {
             })
     },[])
 
-    function updateCartItemCount() {
-        setProducts([...products])
-    }
     return (
         <>
             <Header />
             <div className="row products-container">
-                {products.map((product) => (
+                { products.length ? 
+                    products.map((product) => (
                         <div className="CardWrapper col-xl-3 col-lg-4 col-sm-6" key = {product.id}>
-                            <ProductCard item = {product} updateCount = {updateCartItemCount}/>
+                            <ProductCard item = {product} />
                         </div>
-                ))}
+                    ))
+                    :
+                    <div className="d-flex align-items-center justify-content-center p-3">
+                        <span className="loading">Loading Products..</span>
+                        &nbsp;&nbsp;&nbsp;
+                        <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                }
                 </div>
             <Footer />
         </>
