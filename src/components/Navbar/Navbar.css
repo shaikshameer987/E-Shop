@@ -1,0 +1,21 @@
+.navbar {
+    background-color: #232f3e;
+    justify-content: flex-start !important;
+    height: 50px;
+    position: relative;
+    top: 50px;
+    width: 100%;
+}
+.navLink {
+    background-color: #232f3e;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-right: 13px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 0;
+    outline: none;
+}
+.nav-list {
+    color: white;
+}

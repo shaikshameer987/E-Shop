@@ -1,55 +1,57 @@
 import React from 'react'
 import "./LogIn.css"
 import {useState} from 'react'
-import { useNavigate } from "react-router-dom";
+import { useUser } from '../../../Context/UserContext'
+import {useNavigate} from "react-router-dom"
 
 function LogIn() {
+
+	const navigate = useNavigate()
 	const [userLogin, setUserLogin] = useState({})
-	let navigate = useNavigate()
-	function handleFormLogin() {
-		navigate("/")
+	const {user, dispatch} = useUser()
+	const handleLogin = (event) => {
+		event.preventDefault()
+		if(userLogin.email === user.email && userLogin.password === user.password){
+			dispatch({type : "loggedin"})
+			navigate("/")
+		}else{
+			alert("Username or Password Incorrect")
+			return
+		}
 	}
+
   	return (
     <div className='loginDiv'>
-		<div className='dummy'>
-		<h4>Please SignIn.</h4>
+		<h4 className='sign-in'>Sign in</h4>
         <hr></hr>
-		<form onSubmit={handleFormLogin} action=''>
-			<div className='username-div px-2 mb-1'>
-				<label className='form-label'>Username</label>
-				<input 
-					type="text"
-					onInput = {(e) => {
-						userLogin.username = e.target.value
-						setUserLogin(userLogin)
-					}}></input>
-			</div>
+		<form action=''>
 			<div className='email-div px-2  mb-1'>
-				<label className='form-label'>Email</label>
+				<label className='form-label dark'>Email</label>
 				<input 
 					type="email"
 					onInput = {(e) => {
-						userLogin.email = e.target.value
-						setUserLogin(userLogin)
+						setUserLogin({...userLogin, email : e.target.value})
 					}}></input>
 			</div>
 			<div className='password-div px-2 mb-4'>
-				<label className='form-label'>Password</label>
+				<label className='form-label dark'>Password</label>
 				<input 
 					type="password"
 					onInput = {(e) => {
-						userLogin.password = e.target.value
-						setUserLogin(userLogin)
+						setUserLogin({...userLogin, password : e.target.value})
 					}}></input>
 			</div>   
 			<div className='submitDiv px-2 mb-4'>
-				<button type="submit" className='btn btn-success'>LogIn</button>
+				<button 
+					type="submit" 
+					className='btn btn-success'
+					onClick={handleLogin}
+				>LogIn</button>
 			</div>
 			<div className='gotologinDiv'>
 				<a href='/register' className='gotologin'>Dont have an Account</a>
 			</div>  
 		</form>   
-		</div>
     </div>
   )
 }

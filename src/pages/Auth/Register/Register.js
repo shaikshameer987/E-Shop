@@ -2,130 +2,79 @@ import React from 'react'
 import "./Register.css"
 import {useState} from 'react'
 import { useNavigate } from "react-router-dom";
+import { useUser } from '../../../Context/UserContext';
 
 function Register() {
-    const [user, setUser] = useState({})
+    
+    const {user, dispatch} = useUser() 
+    const [regUser, setRegUser] = useState({})
     const navigate = useNavigate()
+    
     function handleFormSubmit(event) {
-        console.log(user)
+        event.preventDefault()
+        if(/\d/.test(regUser.name)){
+            alert("Please dont include numbers in name")
+            return 
+        }
+        console.log({...user, ...regUser})
+        dispatch({type : "ADD_USER", payload: {...user, ...regUser}})
         navigate("/login")
     }
+    
     return (
         <div className='register-form'>
-            <h4>Please Register.</h4>
+            <h4>Create Account</h4>
             <hr></hr>
             <form onSubmit={handleFormSubmit} action=''>
-                <div className='row name mb-1'>
-                    <div className='col-6 px-2'>
-                        <label className='form-label'>First Name</label>
+                <div className='name'>
+                        <label className='form-label'>Your name</label>
                         <input 
                             type="text"
+                            // required
+                            placeholder='First and Last name'
                             onInput = {(e) => {
-                                user.firstName = e.target.value
-                                setUser(user)
+                                regUser.name = e.target.value
+                                setRegUser(regUser)
                             }}></input>
-                    </div>
-                    <div className='col-6 px-2'>
-                        <label className='form-label'>Last Name</label>
-                        <input 
-                            type="text"
-                            onInput = {(e) => {
-                                user.lastName = e.target.value
-                                setUser(user)
-                            }}></input>
-                    </div>
                 </div>
-                <div className='username-div px-2 mb-1'>
-                    <label className='form-label'>Username</label>
+                <div className='phone-container marg'>
+                    <label className='form-label'>Phone</label>
                     <input 
-                        type="text"
+                        type="tel"
+                        // required
+                        maxLength="10"
+                        placeholder='Mobile number'
                         onInput = {(e) => {
-                            user.username = e.target.value
-                            setUser(user)
+                            regUser.phone = e.target.value
+                            setRegUser(regUser)
                         }}></input>
                 </div>
-                <div className='email-div px-2  mb-1'>
+                <div className='email-container marg'>
                     <label className='form-label'>Email</label>
                     <input 
                         type="email"
+                        required
                         onInput = {(e) => {
-                            user.email = e.target.value
-                            setUser(user)
+                            regUser.email = e.target.value
+                            setRegUser(regUser)
                         }}></input>
                 </div>
-                <div className='password-div px-2 mb-1'>
+                <div className='password-container marg'>
                     <label className='form-label'>Password</label>
                     <input 
                         type="password"
+                        required
+                        placeholder='Atleast 6 characters'
+                        minLength="6"
                         onInput = {(e) => {
-                            user.password = e.target.value
-                            setUser(user)
+                            regUser.password = e.target.value
+                            setRegUser(regUser)
                         }}></input>
                 </div>
-                <div className='phone-div px-2 mb-1'>
-                    <label className='form-label'>Phone</label>
-                    <input 
-                        type="number"
-                        onInput = {(e) => {
-                            user.phone = e.target.value
-                            setUser(user)
-                        }}></input>
-                </div>
-                <div className='row address mb-3'>
-                    <label className='form-label address-label'>Address</label>
-                    <div className='col-6 px-2'>
-                        <input 
-                            type="text"
-                            placeholder='City'
-                            onInput = {(e) => {
-                                user.address ?
-                                user.address.city = e.target.value
-                                :
-                                user.address = { city : e.target.value }
-                                setUser(user)
-                            }}></input>
-                    </div>
-                    <div className='col-6 px-2'>
-                        <input 
-                            type="text" 
-                            placeholder='Street'
-                            onInput = {(e) => {
-                                user.address ?
-                                user.address.street = e.target.value
-                                :
-                                user.address = { street : e.target.value }
-                                setUser(user)
-                            }}></input>
-                    </div>
-                    <div className='col-6 px-2 my-2'>
-                        <input 
-                            type="text" 
-                            placeholder='Flat No'
-                            onInput = {(e) => {
-                                user.address ?
-                                user.address.flatNo = e.target.value
-                                :
-                                user.address = { flatNo : e.target.value }
-                                setUser(user)
-                            }}></input>
-                    </div>
-                    <div className='col-6 px-2 my-2'>
-                        <input 
-                            type="text" 
-                            placeholder='Zip Code'
-                            onInput = {(e) => {
-                                user.address ?
-                                user.address.zipCode = e.target.value
-                                :
-                                user.address = { zipCode : e.target.value }
-                                setUser(user)
-                            }}></input>
-                    </div>
-                </div>
-                <div className='submitDiv px-2 mb-2'>
+                <div className='button-container marg'>
                     <button type="submit" className='btn btn-success'>Register</button>
                 </div>
-                <div className='gotologinDiv'>
+                <div className='gotologinDiv marg'>
                     <a href='/login' className='gotologin'>Already have an Account</a>
                 </div>
             </form>

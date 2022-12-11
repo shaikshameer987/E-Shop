@@ -9,10 +9,10 @@ function CartItem(props) {
     function handleQtyChange(newQty) {
         if(newQty > 0){
             props.item.qty = newQty
-            dispatch({type : "changeQty", data : props.item})
+            dispatch({type : "CHANGE_QTY", data : props.item})
         }else{
             props.item.qty = 0
-            dispatch({type : "changeQty", data : props.item})
+            dispatch({type : "CHANGE_QTY", data : props.item})
         }
     }
 
@@ -25,11 +25,11 @@ function CartItem(props) {
                     alt="...">
                 </img>
             </div>
-            <div className="detail-container col-lg-7 col-sm-6 col-5">
+            <div className="detail-container col-lg-8 col-sm-6 col-5">
                 <h5 className="title">{props.item.title}</h5>
                 <p className="description">{props.item.description}</p>
             </div>
-            <div className="priceContainer col-lg-3 col-3"> 
+            <div className="priceContainer col-lg-2 col-3"> 
                 <p className='itemTotalPrice'>₹ {Math.round(props.item.price * props.item.qty)}</p>   
                 <div className='qty-div'>
                 <button 
@@ -46,7 +46,7 @@ function CartItem(props) {
                 </div> 
                 <button 
                     className='btn btn-outline-danger btn-sm deleteItem mt-2'
-                    onClick = {() => dispatch({type : "removeItem", data : props.item})}
+                    onClick = {() => dispatch({type : "REMOVE_ITEM", data : props.item})}
                 >Delete</button>          
             </div>
         </div>

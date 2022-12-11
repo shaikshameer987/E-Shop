@@ -1,28 +1,26 @@
-import { useState, useEffect } from "react"
+import Header from "../../components/Shared/Header/Header"
+import Navbar from "../../components/Navbar/Navbar"
 import ProductCard from "../../components/Home/ProductCard/ProductCard"
 import Footer from "../../components/Shared/Footer/Footer"
-import Header from "../../components/Shared/Header/Header"
 import "./Home.css"
+import { useSearch } from "../../Context/SearchContent"
+import { useProducts } from "../../Context/ProductsContext"
 
 function Home() {
-    const [products, setProducts] = useState([])
-
-    useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
-            .then((res) => {
-                return res.json()
-            }).then((res) => {
-                res.forEach((o) => o.qty = 1)
-                setProducts(res)
-            })
-    },[])
+    const {products} = useProducts()
+    const {searchValue} = useSearch()
 
     return (
         <>
-            <Header />
+        <Header />
+        <Navbar />
+        <div className="home-page">
             <div className="row products-container">
-                { products.length ? 
-                    products.map((product) => (
+                {products.length ?
+                    products.filter((item) => {
+                        return searchValue === "" || item.title.toLowerCase().includes(searchValue.toLowerCase()) ? item : null
+                    }) 
+                    .map((product) => (
                         <div className="CardWrapper col-xl-3 col-lg-4 col-sm-6" key = {product.id}>
                             <ProductCard item = {product} />
                         </div>
@@ -38,6 +36,7 @@ function Home() {
                 }
                 </div>
             <Footer />
+        </div>
         </>
     )
 }

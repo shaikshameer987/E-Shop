@@ -1,3 +1,10 @@
+.home-page {
+    position: relative;
+    top: 50px;
+    width: 100%;
+}
+
+
 .products-container {
     background-color: rgb(191, 250, 230);
     padding-top: 10px;
@@ -15,4 +22,9 @@ a {
 }
 .spinner-border {
     display: inline;
+}
+
+.CardWrapper:hover {
+    transform: scale(1.03);
+    transition: 250ms;
 }

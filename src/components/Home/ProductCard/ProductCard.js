@@ -35,7 +35,7 @@ function ProductCard(props) {
                 </div>
             </div>
             <div className='addcart-buttondiv'>
-                <button className="btn btn-primary addtocart" onClick={() => dispatch({type : "addItem", data : props.item})}>Add to Cart</button>
+                <button className="btn btn-primary addtocart" onClick={() => dispatch({type : "ADD_ITEM", data : props.item})}>Add to Cart</button>
             </div>
         </div>
     )

@@ -1,48 +1,36 @@
 .register-form {
-    padding: 10px 20px;
-    width: 80%;
-    margin: auto;
-    background-color: aquamarine;
-    border-radius: 20px;
-    opacity: 0.9;
+    padding: 20px 30px;
+    width: 400px;
+    margin: 20px auto;
+    background-color: aliceblue;
+    border-radius: 10px;
+    border: 1px solid black;
 }
 hr {
-    margin: 10px 0px !important;
+    margin: 20px 0px !important;
 }
 input {
     width: 100%;
-    height: 32px;
-    border-radius: 5px;
-    border: 1px solid black;
+    height: 35px;
+    border: 1px solid gray;
     outline: none;
-    padding: 5px 10px; 
+    padding: 3px 10px; 
+    font-size: 14px !important;
 }
-.container {
-    padding: 0;
+.form-label  {
+    padding: 0 !important;
+    font-weight: bold;
+    font-size: 15px;
 }
-.address-label {
-    margin-bottom: 0 !important;
+.marg {
+    margin-top: 20px;
 }
-.address {
-    row-gap: 10px;
+
+.button-container, .gotologinDiv {
+    margin-top: 20px;
+    display: grid;
+    place-items: center;
 }
-.btn {
+.btn-success {
     width: 150px;
-}
-.submitDiv {
-    margin: auto;
-    width: max-content;
-}
-/* input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-} */
-.gotologin {
-    color: blue !important;
-    font-size: 16px;
-    margin: auto;
-}
-.gotologinDiv {
-    width: max-content;
-    margin: 5px auto;
 }

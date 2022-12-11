@@ -1,6 +1,12 @@
-.navbar {
-    background-color: #232F3E;
-    height: 50px;
+.header {
+    background-color: #131921;
+    padding: 10px 0px 10px 0px !important;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
 }
 .branding-div {
     display: flex;
@@ -18,6 +24,7 @@
 .user-list {
     display: flex;
     margin-bottom: 0;
+    padding: 0;
     align-items: center;
     color: white;
     list-style: none;
@@ -30,4 +37,62 @@
 }
 .cart-button {
     color: white;
+}
+.search-button {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 31px;
+    background-color: #0d6efd;
+    width: 90px;
+    color: white;
+}
+
+.search-button:active {
+    transform: scale(0.98);
+    transition: 90ms;
+}
+
+.container-fluid {
+    flex-wrap: wrap;
+    row-gap: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 650px) {
+    /* .branding-div{
+        width: 50%;
+    }
+    .nav-list{
+        width: 50%;
+    } */
+    .search-bar {
+        order: 3;
+        width: 100%;
+    }
+}
+/* 
+.navLink {
+    color: white;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+} */
+
+.nav-item {
+    min-width: max-content;
+}
+
+.user-profile {
+    margin-right: 15px;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+.profile-pic {
+    width: 100%;
 }
