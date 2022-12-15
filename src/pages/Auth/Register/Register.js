@@ -1,40 +1,43 @@
 import React from 'react'
 import "./Register.css"
-import {useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import { useUser } from '../../../Context/UserContext';
 
 function Register() {
     
     const {user, dispatch} = useUser() 
-    const [regUser, setRegUser] = useState({})
+    const {name, phone, email, password} = user
     const navigate = useNavigate()
     
     function handleFormSubmit(event) {
         event.preventDefault()
-        if(/\d/.test(regUser.name)){
+        if(/\d/.test(name)){
             alert("Please dont include numbers in name")
             return 
         }
-        console.log({...user, ...regUser})
-        dispatch({type : "ADD_USER", payload: {...user, ...regUser}})
+        for(let i = 0; i < phone.length; i++){
+            if(isNaN(+phone[i])){
+                alert("Please enter a valid phone number")
+                return
+            } 
+        }
         navigate("/login")
     }
     
     return (
         <div className='register-form'>
             <h4>Create Account</h4>
-            <hr></hr>
+            <hr className='register-hr'></hr>
             <form onSubmit={handleFormSubmit} action=''>
                 <div className='name'>
                         <label className='form-label'>Your name</label>
                         <input 
                             type="text"
                             // required
+                            value={name}
                             placeholder='First and Last name'
                             onInput = {(e) => {
-                                regUser.name = e.target.value
-                                setRegUser(regUser)
+                                dispatch({type: "name", payload : e.target.value})
                             }}></input>
                 </div>
                 <div className='phone-container marg'>
@@ -43,10 +46,10 @@ function Register() {
                         type="tel"
                         // required
                         maxLength="10"
+                        value={phone}
                         placeholder='Mobile number'
                         onInput = {(e) => {
-                            regUser.phone = e.target.value
-                            setRegUser(regUser)
+                            dispatch({type: "phone", payload : e.target.value})
                         }}></input>
                 </div>
                 <div className='email-container marg'>
@@ -54,9 +57,10 @@ function Register() {
                     <input 
                         type="email"
                         required
+                        value={email}
+                        placeholder="xyz@gmail.com  "
                         onInput = {(e) => {
-                            regUser.email = e.target.value
-                            setRegUser(regUser)
+                            dispatch({type: "email", payload : e.target.value})
                         }}></input>
                 </div>
                 <div className='password-container marg'>
@@ -64,11 +68,11 @@ function Register() {
                     <input 
                         type="password"
                         required
+                        value={password}
                         placeholder='Atleast 6 characters'
                         minLength="6"
                         onInput = {(e) => {
-                            regUser.password = e.target.value
-                            setRegUser(regUser)
+                            dispatch({type: "password", payload : e.target.value})
                         }}></input>
                 </div>
                 <div className='button-container marg'>

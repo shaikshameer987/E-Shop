@@ -3,16 +3,20 @@
     border: 1px solid black;
     border-radius: 10px;
     background-color: white;
-    height: 140px;
     overflow: hidden;
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
 }
 .product-image {
-    width: 90%;
-    height: 100%;
+    width: 120px;
+    height: 120px;
     padding: 10px;
 }
+.image-container {
+    margin-right: 15px;
+}
+
+
 .title {
     font-size: 18px;
 }
@@ -24,14 +28,17 @@
 }
 
 .detail-container {
-    padding: 10px 20px 10px 0;
+    padding: 15px 15px 0px 15px;
+    flex-grow: 1;
+    flex-shrink: 1;
 }
+
 .DetailContainer p {
     font-size: 15px;
 }
 .priceContainer {
     padding: 10px;
-    padding-right: 30px;
+    padding-right: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -62,7 +69,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
+    width: 40px;
     text-align: center;
     height: 30px;
     border: 1px solid black;
@@ -77,18 +84,16 @@
     text-overflow: ellipsis;
 }
 .deleteItem {
-    width: 120px !important;
+    width: 110px !important;
 }
 
 @media only screen and (max-width:700px) {
-    .description {
-        display: none;
-    }
-    .product-image {
-        width: 100%;
-    }
     .cartItem {
         width: 100%;
+        flex-direction: column;
     }
-
+    .itemTotalPrice {
+        float: right;
+        padding-right: 10px;
+    }
 }

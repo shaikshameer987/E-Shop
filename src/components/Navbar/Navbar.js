@@ -5,20 +5,17 @@ import "./Navbar.css"
 
 function Navbar() {
     const {dispatch} = useFilteredProducts()
+    
     return (
         <nav className='navbar'>
             <button 
                 className='navLink'
-                onClick={() => dispatch({type : "category", payload: "all"})}
+                onClick={() => dispatch({type : "category", payload: ""})}
             ><Link className='nav-list' to="/filterproducts">All</Link></button>
             <button 
                 className='navLink'
-                onClick={() => dispatch({type : "category", payload: "men"})}
-            ><Link  className='nav-list' to="/filterproducts">Men</Link></button>
-            <button 
-                className='navLink'
-                onClick={() => dispatch({type : "category", payload: "women"})}
-            ><Link  className='nav-list' to="/filterproducts">Women</Link></button>
+                onClick={() => dispatch({type : "category", payload: "clothing"})}
+            ><Link  className='nav-list' to="/filterproducts">Fashion</Link></button>
             <button
                 className='navLink'
                 onClick={() => dispatch({type : "category", payload: "electronics"})}

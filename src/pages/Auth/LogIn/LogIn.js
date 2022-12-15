@@ -12,7 +12,7 @@ function LogIn() {
 	const handleLogin = (event) => {
 		event.preventDefault()
 		if(userLogin.email === user.email && userLogin.password === user.password){
-			dispatch({type : "loggedin"})
+			dispatch({type : "login"})
 			navigate("/")
 		}else{
 			alert("Username or Password Incorrect")

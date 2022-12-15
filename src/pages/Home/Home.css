@@ -1,17 +1,14 @@
-.home-page {
-    position: relative;
-    top: 50px;
-    width: 100%;
-}
-
-
 .products-container {
     background-color: rgb(191, 250, 230);
-    padding-top: 10px;
     margin: 0 !important;
-    padding: 20px 10px !important;
-    row-gap: 20px;
+    padding: 15px 10px !important;
+    row-gap: 15px;
 }
+.products-container >* {
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+}
+
 a {
     text-decoration: none !important; 
 }

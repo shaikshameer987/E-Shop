@@ -18,19 +18,19 @@ function CartItem(props) {
 
     return (
         <div className="cartItem">
-            <div className="image-container col-lg-2 col-sm-3 col-4">
+            <div className="detail-container">
+                <h5 className="title">{props.item.title}</h5>
+                <p className='itemTotalPrice'>₹ {Math.round(props.item.price * props.item.qty)}</p>   
+            </div>
+            <div className='d-flex justify-content-between'>
+            <div className="image-container">
                 <img 
                     src= {props.item.image}
                     className="product-image" 
                     alt="...">
                 </img>
             </div>
-            <div className="detail-container col-lg-8 col-sm-6 col-5">
-                <h5 className="title">{props.item.title}</h5>
-                <p className="description">{props.item.description}</p>
-            </div>
-            <div className="priceContainer col-lg-2 col-3"> 
-                <p className='itemTotalPrice'>₹ {Math.round(props.item.price * props.item.qty)}</p>   
+            <div className="priceContainer"> 
                 <div className='qty-div'>
                 <button 
                     className="minus-button bg-danger"
@@ -48,6 +48,7 @@ function CartItem(props) {
                     className='btn btn-outline-danger btn-sm deleteItem mt-2'
                     onClick = {() => dispatch({type : "REMOVE_ITEM", data : props.item})}
                 >Delete</button>          
+            </div>
             </div>
         </div>
     )

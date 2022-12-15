@@ -3,10 +3,6 @@
     padding: 10px 0px 10px 0px !important;
     display: flex;
     align-items: center;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 2;
 }
 .branding-div {
     display: flex;
@@ -60,12 +56,6 @@
 }
 
 @media screen and (max-width: 650px) {
-    /* .branding-div{
-        width: 50%;
-    }
-    .nav-list{
-        width: 50%;
-    } */
     .search-bar {
         order: 3;
         width: 100%;
@@ -95,4 +85,8 @@
 
 .profile-pic {
     width: 100%;
+}
+
+.search-input {
+    height: 30px;
 }

@@ -7,37 +7,64 @@ export const FilterProvider = ({children}) => {
     const {products} = useProducts()
     const initialState = {
         filteredProducts : [],
-        sort :"Price: Low to High"
+        sort : "",
+        brands: [],
+        minPrice : 0,
+        maxPrice: Infinity,
+        size: [] 
     }
     const [state, setState] = useState(initialState)
 
     useEffect(() => {
-        setState({filteredProducts: products, sort :"Price: Low to High"})
+        setState({
+            filteredProducts : [...products],
+            sort : "Price: Low to High",
+            brands: [],
+            minPrice : 0,
+            maxPrice: Infinity,
+            size: [] 
+        })
     },[products])
 
     const dispatch = (action) => {
         switch(action.type){
             case "category" : {
-                let categoryType = action.payload
-                let list = products.filter((item) => item.category.toLowerCase().includes(categoryType))
-                if(categoryType === "men"){
-                    list = list.filter((item) => !(item.category.toLowerCase().includes("women")))
-                }
-                if(categoryType === "all"){
-                    list = products.sort((a,b) => a.price - b.price)
-                }
-                setState({...state, filteredProducts: list.sort((a,b) => a.price - b.price), sort : "Price: Low to High"})
+                let list = [...products].filter((item) => item.category.toLowerCase().includes(action.payload))
+                setState({...state, 
+                            filteredProducts: list, 
+                            sort : "Price: Low to High", 
+                            brands: [],
+                            size: []
+                        })
                 break
             }
             case "sort" : {
-                let sortType = action.payload
-                let sortedProducts
-                if(sortType === "Price: Low to High"){
-                    sortedProducts = state.filteredProducts.sort((a,b) => a.price - b.price)
-                }else if(sortType === "Price: High to Low"){
-                    sortedProducts = state.filteredProducts.sort((a,b) => b.price - a.price)
-                }
-                setState({...state, filteredProducts: sortedProducts})
+                setState({...state, sort : action.payload})
+                break
+            }
+            case "pricerange" : {
+                console.log(action)
+                setState({...state, minPrice : action.minPrice, maxPrice: action.maxPrice})
+                break
+            }
+            case "addbrand" : {
+                const brands = [...state.brands, action.payload]
+                setState({...state, brands : brands})
+                break
+            }
+            case "removebrand" : {
+                const brands = state.brands.filter((item) => item !== action.payload)
+                setState({...state, brands : brands})
+                break
+            }
+            case "addsize" : {
+                let tempSize = [...state.size, +action.payload]
+                setState({...state, size : tempSize})
+                break
+            }
+            case "removesize" : {
+                const tempSize = state.size.filter((size) => size !== +action.payload)
+                setState({...state, size : tempSize})
                 break
             }
             default : return state
@@ -50,3 +77,5 @@ export const FilterProvider = ({children}) => {
 }
 
 export const useFilteredProducts = () => useContext(FilterContext)
+
+

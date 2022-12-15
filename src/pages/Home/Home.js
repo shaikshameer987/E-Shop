@@ -1,5 +1,6 @@
 import Header from "../../components/Shared/Header/Header"
 import Navbar from "../../components/Navbar/Navbar"
+import BannerCarousal from "../../components/Home/BannerCarousal/BannerCarousal"
 import ProductCard from "../../components/Home/ProductCard/ProductCard"
 import Footer from "../../components/Shared/Footer/Footer"
 import "./Home.css"
@@ -14,6 +15,7 @@ function Home() {
         <>
         <Header />
         <Navbar />
+        <BannerCarousal />
         <div className="home-page">
             <div className="row products-container">
                 {products.length ?

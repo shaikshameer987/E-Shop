@@ -23,7 +23,7 @@ function Cart() {
         <Header />
         <div className='cartItemsContainer'>
             <div className='cart-header'>
-                <h3 className='heading'>Shopping Cart</h3>
+                <h4 className='heading'>Shopping Cart</h4>
                 <div className='total-price-div'>
                     <span className='cart-price-heading'>Total Price :</span>
                     <span className='rupeesymbol'>₹ <span className='total-price'>{Math.round(totalPrice)}</span></span>

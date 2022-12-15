@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom'
 import { useCart } from '../../../Context/CartContext'
 import { useSearch } from '../../../Context/SearchContent'
 import {useUser} from "../../../Context/UserContext"
+import { useNavigate } from 'react-router-dom'
 
 function Header() {
     const {dispatch} = useSearch()
     const [value, setValue] = useState("")
     const {cartItems} = useCart()  
     const {user} = useUser()
-    
+    const navigate = useNavigate()
+
     return (
             <header className="header">
                 <div className="container-fluid">
@@ -36,6 +38,7 @@ function Header() {
                                 onClick={(e) => {
                                     e.preventDefault()
                                     dispatch({type: "setState", data: value})
+                                    navigate("/")
                                 }}
                             >Search</button>
                         </form>

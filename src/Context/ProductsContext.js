@@ -5,7 +5,7 @@ const ProductContext = createContext()
 export const ProductProvider = ({children}) => {
     const [products, setProducts] = useState([])
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
+        fetch('Products.json')
             .then((res) => {
                 return res.json()
             }).then((res) => {
