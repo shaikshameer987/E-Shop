@@ -1,10 +1,13 @@
 import React from 'react'
 import './ProductCard.css'
-import { useCart } from '../../../Context/CartContext'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { singleproduct } from '../../../redux/reducers/filterReducer'
 
 function ProductCard(props) {
-
-    const {dispatch} = useCart()    
+    const navigate = useNavigate() 
+    const dispatch = useDispatch()
+    console.log("Product Card Called")
 
     let ratings = Math.round(props.item.rating.rate)
     let ratingsArr = new Array(ratings).fill("")
@@ -13,8 +16,16 @@ function ProductCard(props) {
             </svg>
 
   return (
-        <div className="card product-item">
-            <h5 className="product-title">{props.item.title}</h5>
+        <div 
+            className="card product-item"
+            onClick={() => {
+                dispatch(singleproduct(props.item))
+                navigate("/singleproduct")
+            }}
+        >
+            <h5 
+                className="product-title"
+            >{props.item.title}</h5>
             <div className='imageDiv'>
                 <img 
                     src= {props.item.image} 
@@ -33,9 +44,6 @@ function ProductCard(props) {
                 <div className='desc-div'>
                     <p className="product-description">{props.item.description}</p>
                 </div>
-            </div>
-            <div className='addcart-buttondiv'>
-                <button className="btn btn-primary addtocart" onClick={() => dispatch({type : "ADD_ITEM", data : props.item})}>Add to Cart</button>
             </div>
         </div>
     )

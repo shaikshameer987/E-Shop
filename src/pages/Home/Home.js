@@ -4,12 +4,22 @@ import BannerCarousal from "../../components/Home/BannerCarousal/BannerCarousal"
 import ProductCard from "../../components/Home/ProductCard/ProductCard"
 import Footer from "../../components/Shared/Footer/Footer"
 import "./Home.css"
-import { useSearch } from "../../Context/SearchContent"
-import { useProducts } from "../../Context/ProductsContext"
+import { useSelector, useDispatch } from "react-redux"
+import { fetchProducts } from "../../redux/reducers/productsReducer"
+import { useEffect } from "react"
 
 function Home() {
-    const {products} = useProducts()
-    const {searchValue} = useSearch()
+    const products = useSelector(state => state.products.products)
+    const searchValue = useSelector(state => state.search.value)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if(products.length === 0){
+            console.log("fetching all products")
+            dispatch(fetchProducts())
+        }
+        
+    },[])
 
     return (
         <>
@@ -23,7 +33,7 @@ function Home() {
                         return searchValue === "" || item.title.toLowerCase().includes(searchValue.toLowerCase()) ? item : null
                     }) 
                     .map((product) => (
-                        <div className="CardWrapper col-xl-3 col-lg-4 col-sm-6" key = {product.id}>
+                        <div className="cardwrapper col-xl-3 col-lg-4 col-6" key = {product.id}>
                             <ProductCard item = {product} />
                         </div>
                     ))

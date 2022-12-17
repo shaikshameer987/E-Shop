@@ -8,8 +8,8 @@
     margin: 0 auto;
 }
 .product-image {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     padding: 10px;
 }
 .image-container {
@@ -30,7 +30,6 @@
 .detail-container {
     padding: 15px 15px 0px 15px;
     flex-grow: 1;
-    flex-shrink: 1;
 }
 
 .DetailContainer p {
@@ -42,6 +41,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    order: 2;
 }
 .itemTotalPrice {
     font-size: 18px;
@@ -85,15 +85,19 @@
 }
 .deleteItem {
     width: 110px !important;
+    
 }
 
 @media only screen and (max-width:700px) {
     .cartItem {
-        width: 100%;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
-    .itemTotalPrice {
-        float: right;
-        padding-right: 10px;
+    .image-container  {
+        order: 1;
+    }
+    .detail-container {
+        grid-column-start: 1;
+        grid-column-end: 3;
     }
 }

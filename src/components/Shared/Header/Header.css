@@ -4,6 +4,9 @@
     display: flex;
     align-items: center;
 }
+.header-sticky {
+    z-index: 999;
+}
 .branding-div {
     display: flex;
     align-items: center;

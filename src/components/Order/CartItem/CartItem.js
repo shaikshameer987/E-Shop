@@ -1,28 +1,25 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import "./CartItem.css"
-import { useCart } from '../../../Context/CartContext'
+import { changeQty, removeItem } from '../../../redux/reducers/cartReducer'
 
 function CartItem(props) {
 
-    const {dispatch} = useCart()
+    const dispatch = useDispatch()
     
     function handleQtyChange(newQty) {
         if(newQty > 0){
-            props.item.qty = newQty
-            dispatch({type : "CHANGE_QTY", data : props.item})
+            let item = props.item
+            dispatch(changeQty([item, newQty]))
         }else{
-            props.item.qty = 0
-            dispatch({type : "CHANGE_QTY", data : props.item})
+            let item = props.item
+            let newQty = 0
+            dispatch(changeQty([item, newQty]))
         }
     }
 
     return (
         <div className="cartItem">
-            <div className="detail-container">
-                <h5 className="title">{props.item.title}</h5>
-                <p className='itemTotalPrice'>₹ {Math.round(props.item.price * props.item.qty)}</p>   
-            </div>
-            <div className='d-flex justify-content-between'>
             <div className="image-container">
                 <img 
                     src= {props.item.image}
@@ -30,7 +27,11 @@ function CartItem(props) {
                     alt="...">
                 </img>
             </div>
-            <div className="priceContainer"> 
+            <div className="detail-container">
+                <h5 className="title">{props.item.title}</h5>
+            </div>
+            <div className="priceContainer">
+            <p className='itemTotalPrice'>₹ {Math.round(props.item.price * props.item.qty)}</p>    
                 <div className='qty-div'>
                 <button 
                     className="minus-button bg-danger"
@@ -46,9 +47,8 @@ function CartItem(props) {
                 </div> 
                 <button 
                     className='btn btn-outline-danger btn-sm deleteItem mt-2'
-                    onClick = {() => dispatch({type : "REMOVE_ITEM", data : props.item})}
+                    onClick = {() => dispatch(removeItem(props.item))}
                 >Delete</button>          
-            </div>
             </div>
         </div>
     )

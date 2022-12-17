@@ -1,5 +1,6 @@
 .product-item {
-    padding: 20px;
+    padding: 15px 15px 0px 15px;
+    cursor: pointer;
 }
 .product-title {
     max-height: 45px;
@@ -60,9 +61,4 @@
 
 .addcart-buttondiv button {
     width: 180px;
-}
-
-.addtocart:active {
-    transform: scale(0.98);
-    transition: 90ms;
 }

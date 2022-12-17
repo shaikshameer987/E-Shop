@@ -1,16 +1,42 @@
-import React, { } from 'react'
+import React, { useEffect, useState} from 'react'
 import Header from '../../components/Shared/Header/Header'
 import Navbar from '../../components/Navbar/Navbar'
 import ProductCard from '../../components/Home/ProductCard/ProductCard'
 import "./FilterProducts.css"
-import { useSearch } from '../../Context/SearchContent'
-import { useFilteredProducts } from '../../Context/FilterContext'
 import Footer from '../../components/Shared/Footer/Footer'
+import { useDispatch, useSelector } from 'react-redux'
+import { category, fetchProducts } from '../../redux/reducers/filterReducer'
+import {sort, pricerange, addbrand, removebrand, addsize, removesize} from "../../redux/reducers/filterReducer"
 
 function FilterProducts() {
-	const {state, dispatch} = useFilteredProducts()
-	const {filteredProducts, sort, minPrice, maxPrice} = state
-	const {searchValue} = useSearch()
+
+	const filterState = useSelector(state => state.filter)
+	const {filteredProducts, sort: sortValue, minPrice, maxPrice, brands: prevBrands, size: prevSize} = filterState
+	const searchValue = useSelector((state => state.search.value))
+	const [collapsebool, setCollpasebool] = useState(false)
+	const [filterbuttonbool, setFilterbuttonbool] = useState(false)
+	const dispatch = useDispatch()
+ 
+	useEffect(() => {
+		function handleWindowResize() {
+			const {innerWidth} = window
+			if(innerWidth <= 550){
+				setCollpasebool(true)
+				setFilterbuttonbool(true)
+			}else{
+				setCollpasebool(false)
+				setFilterbuttonbool(false)
+			}
+		}
+		window.addEventListener('resize',handleWindowResize)
+	},[])
+
+	useEffect(() => {
+		if(filteredProducts.length === 0){
+			console.log("fetching all products")
+			dispatch(fetchProducts())
+		}
+	},[])
 
 	let prods = []
 	let brands = []
@@ -26,15 +52,15 @@ function FilterProducts() {
 		}
 		brands = Object.keys(brandsObj)
 		sizes = Object.keys(sizesObj)
-		if(state.brands.length){
-			prods = prods.filter((item) => state.brands.includes(item.brand))
+		if(prevBrands.length){
+			prods = prods.filter((item) => prevBrands.includes(item.brand))
 		}
-		if(state.size.length) {
-			prods = prods.filter((item) => state.size.includes(item.size))
+		if(prevSize.length) {
+			prods = prods.filter((item) => prevSize.includes(item.size))
 		}
 		prods = prods.filter((item) => item.price >= minPrice && item.price <= maxPrice)		
-		if(state.sort){
-			if(state.sort === "Price: Low to High"){
+		if(sort){
+			if(sortValue === "Price: Low to High"){
 				prods.sort((a,b) => a.price - b.price)
 			}else{
 				prods.sort((a,b) => b.price - a.price)
@@ -47,18 +73,34 @@ function FilterProducts() {
 		<div className='category-div'>
 			<Header />
 			<Navbar />
-			<div className='products-div d-flex'>
-				<div className='filter-div'>
+			{
+				filterbuttonbool &&	
+				<div className='filterbutton-div'>
+					<button 
+						className='filter-toggler'
+						onClick={() => {
+							setCollpasebool(!collapsebool)
+						}}
+					>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-funnel-fill funnel" viewBox="0 0 16 16">
+							<path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
+					</svg>
+					<small><b>Filter</b></small>
+					</button>
+				</div>
+			}
+			<div className='products-div'>
+				<div className={collapsebool ? "filter-div collapse" : "filter-div"}>
 					<div className='sort-div'>
 						<h4 className='filter-header'>Filters</h4>
 						<hr></hr>
 						<h6 className='py-1'>Sort by Price</h6>
 						<select 
 							className='sort-dropdown'
-							value={sort}
+							value={sortValue}
 							onChange={(e) => {
 								let option = e.target.value
-								dispatch({type: "sort", payload: option})
+								dispatch(sort(option))
 							}}
 						>
 							<option>Price: Low to High</option>
@@ -70,39 +112,39 @@ function FilterProducts() {
 						<button 
 							className='pricerange-buttons'
 							onClick={() => {
-								dispatch({type: "pricerange", minPrice: 0, maxPrice: 1000})
+								dispatch(pricerange({minPrice: 0, maxPrice: 1000}))
 							}}
 						>Under ₹1,000</button>
 						<button 
 							className='pricerange-buttons'
 							onClick={() => {
-								dispatch({type: "pricerange", minPrice: 1000, maxPrice: 5000})
+								dispatch(pricerange({minPrice: 1000, maxPrice: 5000}))
 							}}	
 						>₹1,000 - ₹5,000</button>
 						<button 
 							className='pricerange-buttons'
 							onClick={() => {
-								dispatch({type: "pricerange", minPrice: 5000, maxPrice: 10000})
+								dispatch(pricerange({minPrice: 5000, maxPrice: 10000}))
 							}}	
 						>₹5,000 - ₹10,000</button>
 						<button 
 							className='pricerange-buttons'
 							onClick={() => {
-								dispatch({type: "pricerange", minPrice: 10000, maxPrice: 20000})
+								dispatch(pricerange({minPrice: 5000, maxPrice: 10000}))
 							}}	
 						>₹10,000 - ₹20,000</button>
 						<button 
 							className='pricerange-buttons'
 							onClick={() => {
-								dispatch({type: "pricerange", minPrice: 20000, maxPrice: Infinity})
+								dispatch(pricerange({minPrice: 10000, maxPrice: Infinity}))
 							}}
 						>Over ₹20,000</button>
 						<button 
 							className='pricerange-buttons'
 							onClick={() => {
-								dispatch({type: "pricerange", minPrice: 0, maxPrice: Infinity})
+								dispatch(pricerange({minPrice: 0, maxPrice: Infinity}))
 							}}
-						>Clear Filter</button>
+						>Clear Price Range</button>
 						
 					</div>
 					<div className='brands-div'>
@@ -118,9 +160,9 @@ function FilterProducts() {
 											id={item}
 											onClick={(e) => {
 												if(e.target.checked){
-													dispatch({type : "addbrand", payload: item})
+													dispatch(addbrand(item))
 												}else{
-													dispatch({type : "removebrand", payload: item})
+													dispatch(removebrand(item))
 												}
 											}}
 										>
@@ -149,9 +191,9 @@ function FilterProducts() {
 												id={index}
 												onClick={(e) => {
 													if(e.target.checked){
-														dispatch({type : "addsize", payload: +size})
+														dispatch(addsize(+size))
 													}else{
-														dispatch({type : "removesize", payload: +size})
+														dispatch(removesize(+size))
 													}
 												}}
 											>
@@ -166,14 +208,14 @@ function FilterProducts() {
 						</div> 
 					}
 				</div>
-				<div className='row category-products'>
+				<div className=' category-products'>
 					{prods.length >= 1 
 						&&
 						prods.filter((item) => {
 							return searchValue === "" || item.title.toLowerCase().includes(searchValue.toLowerCase()) ? item : null
 						}) 
 						.map((product) => (
-							<div className="CardWrapper col-lg-4 col-sm-6" key = {product.id}>
+							<div className="cardwrapper col-lg-4 col-md-6" key = {product.id}>
 								<ProductCard item = {product} />
 							</div>
 						))

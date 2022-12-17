@@ -1,18 +1,20 @@
 import React from 'react'
 import "./LogIn.css"
 import {useState} from 'react'
-import { useUser } from '../../../Context/UserContext'
 import {useNavigate} from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux'
+import { setLogin } from '../../../redux/reducers/userReducer'
 
 function LogIn() {
-
+	const user = useSelector(state => state.user)
+	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const [userLogin, setUserLogin] = useState({})
-	const {user, dispatch} = useUser()
+	
 	const handleLogin = (event) => {
 		event.preventDefault()
 		if(userLogin.email === user.email && userLogin.password === user.password){
-			dispatch({type : "login"})
+			dispatch(setLogin(true))
 			navigate("/")
 		}else{
 			alert("Username or Password Incorrect")

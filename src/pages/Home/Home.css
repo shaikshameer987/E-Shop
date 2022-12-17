@@ -21,7 +21,7 @@ a {
     display: inline;
 }
 
-.CardWrapper:hover {
+.cardwrapper:hover {
     transform: scale(1.03);
-    transition: 250ms;
+    transition: 100ms;
 }

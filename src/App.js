@@ -4,22 +4,20 @@ import Cart from './pages/Cart/Cart';
 import Register from './pages/Auth/Register/Register';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LogIn from './pages/Auth/LogIn/LogIn';
-import { CartProvider } from './Context/CartContext';
-import { SearchProvider } from './Context/SearchContent';
+// import { CartProvider } from './Context/CartContext';
 import FilterProducts from './pages/FilterProducts/FilterProducts';
-import { ProductProvider } from './Context/ProductsContext';
-import { FilterProvider } from './Context/FilterContext';
-import { UserProvider } from './Context/UserContext';
+// import { FilterProvider } from './Context/FilterContext';
+import SingleProduct from './pages/SingleProduct/SingleProduct';
+import { Provider } from 'react-redux';
+import store from "../src/redux/store"
 
 function App() {
 
     return (
         <div className="App">
-			<UserProvider>
-			<ProductProvider>
-			<CartProvider>
-			<SearchProvider>
-			<FilterProvider>
+			<Provider store={store}>
+			{/* <CartProvider> */}
+			{/* <FilterProvider> */}
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Home />}></Route>
@@ -27,13 +25,12 @@ function App() {
 					<Route path="login" element={<LogIn />}></Route>
 					<Route path="cart" element={<Cart />}></Route>
 					<Route path = "filterproducts" element={<FilterProducts />}></Route>
+					<Route path = "singleproduct" element={<SingleProduct />}></Route>
 				</Routes>
 			</BrowserRouter>
-			</FilterProvider>
-			</SearchProvider>
-			</CartProvider>
-			</ProductProvider>
-			</UserProvider>
+			{/* </FilterProvider> */}
+			{/* </CartProvider> */}
+			</Provider>
       	</div>
   	);
 }

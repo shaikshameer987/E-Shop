@@ -1,13 +1,14 @@
 .navbar {
     background-color: #232f3e;
     justify-content: flex-start !important;
-    height: 50px;
+
+    flex-wrap: wrap;
 }
 .navLink {
     background-color: #232f3e;
     font-size: 16px;
-    margin-left: 10px;
-    margin-right: 13px;
+    margin-left: 5px;
+    margin-right: 6px;
     padding-top: 5px;
     padding-bottom: 5px;
     border: 0;

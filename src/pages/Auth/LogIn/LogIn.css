@@ -1,11 +1,9 @@
 .loginDiv {
-   width: 100%;
    color: #111;
    padding: 10px 20px;
-   width: 400px;
-   margin: 50px auto;
-   border-radius: 10px;
-   border: 1px solid black;
+   max-width: 400px;
+   margin: 0px auto;
+   border: 1px solid rgba(0, 0, 0, 0.37);
    background-color: aliceblue;
 }
 .dark {

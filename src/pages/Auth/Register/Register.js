@@ -1,20 +1,21 @@
 import React from 'react'
 import "./Register.css"
 import { useNavigate } from "react-router-dom";
-import { useUser } from '../../../Context/UserContext';
-
+import {setName, setPhone, setEmail, setPassword} from "../../../redux/reducers/userReducer"
+import { useDispatch, useSelector } from 'react-redux';
 function Register() {
-    
-    const {user, dispatch} = useUser() 
-    const {name, phone, email, password} = user
+
+    const user = useSelector(state => state.user)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     
     function handleFormSubmit(event) {
         event.preventDefault()
-        if(/\d/.test(name)){
+        if(/\d/.test(user.name)){
             alert("Please dont include numbers in name")
             return 
         }
+        let phone = user.phone
         for(let i = 0; i < phone.length; i++){
             if(isNaN(+phone[i])){
                 alert("Please enter a valid phone number")
@@ -34,10 +35,10 @@ function Register() {
                         <input 
                             type="text"
                             // required
-                            value={name}
+                            value={user.name}
                             placeholder='First and Last name'
                             onInput = {(e) => {
-                                dispatch({type: "name", payload : e.target.value})
+                                dispatch(setName(e.target.value))
                             }}></input>
                 </div>
                 <div className='phone-container marg'>
@@ -46,10 +47,10 @@ function Register() {
                         type="tel"
                         // required
                         maxLength="10"
-                        value={phone}
+                        value={user.phone}
                         placeholder='Mobile number'
                         onInput = {(e) => {
-                            dispatch({type: "phone", payload : e.target.value})
+                            dispatch(setPhone(e.target.value))
                         }}></input>
                 </div>
                 <div className='email-container marg'>
@@ -57,10 +58,10 @@ function Register() {
                     <input 
                         type="email"
                         required
-                        value={email}
+                        value={user.email}
                         placeholder="xyz@gmail.com  "
                         onInput = {(e) => {
-                            dispatch({type: "email", payload : e.target.value})
+                            dispatch(setEmail(e.target.value))
                         }}></input>
                 </div>
                 <div className='password-container marg'>
@@ -68,11 +69,11 @@ function Register() {
                     <input 
                         type="password"
                         required
-                        value={password}
+                        value={user.password}
                         placeholder='Atleast 6 characters'
                         minLength="6"
                         onInput = {(e) => {
-                            dispatch({type: "password", payload : e.target.value})
+                            dispatch(setPassword(e.target.value))
                         }}></input>
                 </div>
                 <div className='button-container marg'>
