@@ -4,7 +4,7 @@ import B from "../../../images/B.jpg"
 import C from "../../../images/C.jpg"
 
 function BannerCarousal() {
-    console.log("Carousel Called")
+
   return (
         <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="true" style={{height: "maxcontent"}}>
             <div className="carousel-indicators">
