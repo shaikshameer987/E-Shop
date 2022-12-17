@@ -5,7 +5,7 @@ import ProductCard from '../../components/Home/ProductCard/ProductCard'
 import "./FilterProducts.css"
 import Footer from '../../components/Shared/Footer/Footer'
 import { useDispatch, useSelector } from 'react-redux'
-import { category, fetchProducts } from '../../redux/reducers/filterReducer'
+import { fetchProducts } from '../../redux/reducers/filterReducer'
 import {sort, pricerange, addbrand, removebrand, addsize, removesize} from "../../redux/reducers/filterReducer"
 
 function FilterProducts() {
