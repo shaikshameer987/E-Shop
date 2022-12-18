@@ -19,7 +19,7 @@ function Home() {
             dispatch(fetchProducts())
         }
         
-    },[])
+    })
 
     return (
         <>
@@ -33,7 +33,7 @@ function Home() {
                         return searchValue === "" || item.title.toLowerCase().includes(searchValue.toLowerCase()) ? item : null
                     }) 
                     .map((product) => (
-                        <div className="cardwrapper col-xl-3 col-lg-4 col-6" key = {product.id}>
+                        <div className="cardwrapper col-xl-3 col-lg-4 col-sm-6 col-12" key = {product.id}>
                             <ProductCard item = {product} />
                         </div>
                     ))

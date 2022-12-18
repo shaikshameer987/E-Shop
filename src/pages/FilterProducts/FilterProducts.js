@@ -36,7 +36,7 @@ function FilterProducts() {
 			console.log("fetching all products")
 			dispatch(fetchProducts())
 		}
-	},[])
+	})
 
 	let prods = []
 	let brands = []
