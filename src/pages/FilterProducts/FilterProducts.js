@@ -6,6 +6,7 @@ import "./FilterProducts.css"
 import Footer from '../../components/Shared/Footer/Footer'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from '../../redux/reducers/filterReducer'
+import {setSearchValue} from "../../redux/reducers/searchReducer"
 import {sort, pricerange, addbrand, removebrand, addsize, removesize} from "../../redux/reducers/filterReducer"
 
 function FilterProducts() {
@@ -28,8 +29,11 @@ function FilterProducts() {
 				setFilterbuttonbool(false)
 			}
 		}
-		window.addEventListener('resize',handleWindowResize)
-	},[])
+		handleWindowResize()	
+		window.addEventListener("popstate", function() {
+			dispatch(setSearchValue(""))
+		})
+	},[dispatch])
 
 	useEffect(() => {
 		if(filteredProducts.length === 0){
@@ -79,6 +83,7 @@ function FilterProducts() {
 					<button 
 						className='filter-toggler'
 						onClick={() => {
+							setFilterbuttonbool(!filterbuttonbool)
 							setCollpasebool(!collapsebool)
 						}}
 					>
@@ -92,7 +97,21 @@ function FilterProducts() {
 			<div className='products-div'>
 				<div className={collapsebool ? "filter-div collapse" : "filter-div"}>
 					<div className='sort-div'>
-						<h4 className='filter-header'>Filters</h4>
+						<span className='filter-header'>Filters</span>
+						{
+							!collapsebool && 
+							<button 
+								className='filter-close'
+								onClick={() => {
+									setFilterbuttonbool(!filterbuttonbool)
+									setCollpasebool(!collapsebool)
+								}}
+							>
+								<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" className="bi bi-x-lg" viewBox="0 0 16 16">
+									<path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+								</svg>
+							</button>
+						}
 						<hr></hr>
 						<h6 className='py-1'>Sort by Price</h6>
 						<select 

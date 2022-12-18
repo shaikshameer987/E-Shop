@@ -3,8 +3,8 @@
     cursor: pointer;
 }
 .product-title {
-    max-height: 45px;
-    min-height: 45px;
+    max-height: 40px;
+    min-height: 40px;
     font-size: 17px;
     display: -webkit-box;
     -webkit-line-clamp: 2;

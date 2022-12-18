@@ -1,7 +1,7 @@
 import React from 'react'
 import "./LogIn.css"
 import {useState} from 'react'
-import {useNavigate} from "react-router-dom"
+import {useNavigate, Link} from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { setLogin } from '../../../redux/reducers/userReducer'
 
@@ -51,7 +51,7 @@ function LogIn() {
 				>LogIn</button>
 			</div>
 			<div className='gotologinDiv'>
-				<a href='/register' className='gotologin'>Dont have an Account</a>
+				<Link to='/register' className='gotologin'>Dont have an Account</Link>
 			</div>  
 		</form>   
     </div>

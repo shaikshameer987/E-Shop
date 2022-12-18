@@ -1,8 +1,8 @@
 .navbar {
     background-color: #232f3e;
     justify-content: flex-start !important;
-
     flex-wrap: wrap;
+    padding: 4px !important;
 }
 .navLink {
     background-color: #232f3e;

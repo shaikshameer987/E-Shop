@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./SingleProduct.css"
 import Header from '../../components/Shared/Header/Header'
 import Navbar from "../../components/Navbar/Navbar"
@@ -12,8 +12,16 @@ function SingleProduct() {
 	const singleProduct = useSelector(state => state.filter.singleProduct)
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+		if(Object.keys(singleProduct).length === 0){
+			navigate("/filterproducts")
+			return
+		}
+	})
 	
 	return (
+		Object.keys(singleProduct).length > 0 && 
 		<div className='single-product-page'>
 			<Header />
 			<Navbar />

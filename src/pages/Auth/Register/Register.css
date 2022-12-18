@@ -1,9 +1,12 @@
 .register-form {
     padding: 20px 30px;
     max-width: 400px;
-    margin: 0px auto;
+    margin: 40px auto;
     background-color: aliceblue;
     border: 1px solid rgba(0, 0, 0, 0.37);
+    /* position: relative;
+    top: 50%;
+    transform: translateY(-50%); */
 }
 .register-hr {
     margin: 20px 0px !important;

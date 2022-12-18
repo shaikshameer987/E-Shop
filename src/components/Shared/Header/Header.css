@@ -30,12 +30,14 @@
 }
 .user-list-item {
     padding-right: 20px;
+    font-weight: 500;
 }
 .user-nav-link {
     color: white;
 }
 .cart-button {
     color: white;
+    font-weight: 500;
 }
 .search-button {
     border: 1px solid black;

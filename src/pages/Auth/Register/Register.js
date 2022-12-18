@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Register.css"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {setName, setPhone, setEmail, setPassword} from "../../../redux/reducers/userReducer"
 import { useDispatch, useSelector } from 'react-redux';
 function Register() {
@@ -80,7 +80,7 @@ function Register() {
                     <button type="submit" className='btn btn-success'>Register</button>
                 </div>
                 <div className='gotologinDiv marg'>
-                    <a href='/login' className='gotologin'>Already have an Account</a>
+                    <Link to='/login' className='gotologin'>Already have an Account</Link>
                 </div>
             </form>
         </div>

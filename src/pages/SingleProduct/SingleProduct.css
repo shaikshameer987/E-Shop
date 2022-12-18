@@ -1,26 +1,30 @@
 .product-details {
     padding: 30px;
     background-color: rgb(126, 255, 212,0.2);
+    column-gap: 25px;
 }
 .product-image-button-div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding-bottom: 20px;
     width: 45%;
     /* border: 1px solid black; */
 }
 .photo {
     height: 330px;
     margin-bottom: 30px;
-    width: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .singleproduct-image {
     height: 100%;
     width: 100%;
+    max-width: 500px;
 }
 .product-text {
-    padding-left: 25px;
+    /* padding-left: 15px; */
     width: 65%;
 }
 .discounts {

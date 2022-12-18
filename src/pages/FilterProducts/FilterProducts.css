@@ -7,7 +7,6 @@
     min-width: 230px;
     background-color: rgb(191, 250, 230);
     margin-top: 15px;
-    margin-left: 5px;
     padding: 0px 0px 0px 10px;
     display: flex;
     flex-direction: column;
@@ -16,16 +15,16 @@
     display: flex;
     margin: 0 !important;
     padding-top: 15px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: 8px;
+    padding-left: 8px;
     row-gap: 15px;
     flex-wrap: wrap;
     flex-grow: 1;
     align-content: flex-start;
 }
 .category-products >* {
-    padding-left: 7px !important;
-    padding-right: 7px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
 }
 
 .sort-dropdown {
@@ -55,6 +54,7 @@
 .filter-header {
     margin: 0;
     padding-top: 5px;
+    font-size: 24px;
 }
 
 .pricerange-buttons {
@@ -78,6 +78,11 @@
     .products-div {
         flex-direction: column;
     }
+    .filter-div {
+        padding-right: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 }
 
 .funnel {
@@ -89,7 +94,7 @@
     padding: 2px 10px;
     border-radius: 5px;
     outline: none;
-    background-color: aliceblue;
+    background-color: white;
     width: 100px;
     margin-top: 15px;
     margin-right: 17px;
@@ -99,4 +104,21 @@
     background-color: rgb(191, 250, 230);
     display: flex;
     justify-content: flex-end;
+}
+
+.filter-close {
+    font-weight: bold;
+    background-color: white;
+    outline: none;
+    display: grid;
+    place-items: center;
+    border: 0;
+    float: right;
+    margin-top: 5px;
+    width: 35px;
+    height: 30px;
+}
+
+.filter-close:hover, .filter-toggler:hover {
+    background-color: rgb(146, 138, 138,0.3);
 }
