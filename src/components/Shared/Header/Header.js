@@ -3,6 +3,7 @@ import "./Header.css"
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchValue } from '../../../redux/reducers/searchReducer' 
+import { category } from '../../../redux/reducers/filterReducer'
 
 function Header() {
     const [value, setValue] = useState("")
@@ -43,6 +44,7 @@ function Header() {
                                 className='search-button'
                                 onClick={(e) => {
                                     e.preventDefault()
+                                    dispatch(category(""))
                                     dispatch(setSearchValue(value))
                                     setValue("")
                                     navigate("/filterproducts")
