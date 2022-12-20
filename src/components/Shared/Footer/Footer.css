@@ -3,10 +3,11 @@
     color: white;
 }
 .footer-row1 {
-    width: 90%;
+    width: 80%;
     margin: auto !important;
     padding: 20px 0px;
     flex-wrap: wrap;
+    justify-content: space-between !important;
 }
 .footer-column {
     padding: 10px;
@@ -21,6 +22,11 @@
     font-size: 14px;
 }
 .footer-list-heading {
-    margin: 0;
-    padding-bottom: 25px;
+    margin-bottom: 15px;
+}
+
+.footer-column li {
+    font-size: 14px;
+    padding-top: 6px;
+    color: rgb(235, 228, 228);
 }

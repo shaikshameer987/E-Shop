@@ -14,14 +14,14 @@ function BannerCarousal() {
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div className="carousel-inner">
-                <div className="carousel-item active">
-                <img src={A} className="d-block w-100 h-100" alt="..."/>
+                <div className="carousel-item active banner-div">
+                <img src={B} className="d-block w-100 h-100 banner" alt="..."/>
                 </div>
-                <div className="carousel-item">
-                <img src={C} className="d-block w-100 h-100" alt="..."/>
+                <div className="carousel-item banner-div">
+                <img src={C} className="d-block w-100 h-100 banner" alt="..."/>
                 </div>
-                <div className="carousel-item">
-                <img src={B} className="d-block w-100 h-100" alt="..."/>
+                <div className="carousel-item banner-div">
+                <img src={A} className="d-block w-100 h-100 banner" alt="..."/>
                 </div>
             </div>
             <button className="carousel-control-prev control-buttons" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

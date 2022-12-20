@@ -7,49 +7,45 @@ function Footer() {
         <div className='footer'>
             <div className='row footer-row1'>
             <div className='col-xl-3 col-lg-4 col-sm-6 footer-column'> 
-                <h5 className="footer-list-heading">Get to Know Us</h5>
+                <h6 className="footer-list-heading">ABOUT</h6>
                 <ul className="footer-row1-lists">
-                    <li>Careers     </li>
-                    <li>Blog</li>
-                    <li>About Amazon</li>
-                    <li>Investor Relations</li>
-                    <li>Amazon Devices</li>
-                    <li>Amazon Science</li>
+                    <li>Contact Us</li>
+                    <li>About Us</li>
+                    <li>Careers</li>
+                    <li>E-shop Stories</li>
+                    <li>E-shop Wholesale</li>
+                    <li>Corporate Information</li>
                 </ul>
            </div>
            <div className='col-xl-3 col-lg-4 col-sm-6 footer-column'>
-                <h5 className="footer-list-heading">Make Money with Us</h5>
+                <h6 className="footer-list-heading">HELP</h6>
                 <ul className="footer-row1-lists">
-                    <li>Sell products on Amazon</li>
-                    <li>Sell on Amazon Business</li>
-                    <li>Sell apps on Amazon</li>
-                    <li>Become an Affiliate</li>
-                    <li>Advertise Your Products</li>
-                    <li>Self-Publish with Us</li>
-                    <li>Host an Amazon Hub</li>
-                    <li>See More Make Money with Us</li>
+                    <li>Payment</li>
+                    <li>Shipping</li>
+                    <li>Cancellation and Returns</li>
+                    <li>FAQ</li>
+                    <li>Report Infringement</li>
                 </ul>
            </div>
            <div className='col-xl-3 col-lg-4 col-sm-6 footer-column'>
-                <h5 className="footer-list-heading">Amazon Payment Products</h5>
+                <h6 className="footer-list-heading">POLICY</h6>
                 <ul className="footer-row1-lists">
-                    <li>Amazon Business Card</li>
-                    <li>Shop with Points</li>
-                    <li>Reload Your Balance</li>
-                    <li>Amazon Currency Converter</li>
+                    <li>Return Policy</li>
+                    <li>Terms of Use</li>
+                    <li>Security</li>
+                    <li>Privacy</li>
+                    <li>Site Map</li>
+                    <li>EPR Compliance</li>
                 </ul>
            </div>
            <div className='col-xl-3 col-lg-4 col-sm-6 footer-column'>
-                <h5 className="footer-list-heading">Let Us Help You</h5>
+                <h6 className="footer-list-heading">SOCIAL</h6>
                 <ul className="footer-row1-lists">
-                    <li>Amazon and COVID-19</li>
-                    <li>Your Account</li>
-                    <li>Your Orders</li>
-                    <li>Shipping Rates & Policies</li>
-                    <li>Returns & Replacements</li>
-                    <li>Manage Your Content and Devices</li>
-                    <li>Amazon Assistant</li>
-                    <li>Help</li>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>Youtube</li>
+                    <li>Linked In</li>  
                 </ul>
            </div>
            </div>

@@ -1,0 +1,16 @@
+@media screen and (max-width: 600px) {
+    .carousel {
+        height: 210px !important;
+    }
+    .banner-div {
+        height: 210px !important;
+    }
+}
+@media screen and (max-width: 500px) {
+    .carousel {
+        height: 175px !important;
+    }
+    .banner-div {
+        height: 175px !important;
+    }
+}

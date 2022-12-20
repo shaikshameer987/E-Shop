@@ -1,24 +1,41 @@
-import React from 'react'
+import React, {useState} from 'react'
 import "./Register.css"
 import { useNavigate, Link } from "react-router-dom";
 import {setName, setPhone, setEmail, setPassword} from "../../../redux/reducers/userReducer"
 import { useDispatch, useSelector } from 'react-redux';
+import Modal from '../../../components/Modal/Modal';
+
 function Register() {
 
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [modal, setModal] = useState({
+        title: "",
+        description: "",
+        show: false
+    })
     
     function handleFormSubmit(event) {
         event.preventDefault()
         if(/\d/.test(user.name)){
-            alert("Please dont include numbers in name")
+            document.body.style.overflow = "hidden"
+            setModal({
+                title: "Invalid Name",
+                description: "Please inlcude only alphabets in the name",
+                show: true
+            })
             return 
         }
         let phone = user.phone
         for(let i = 0; i < phone.length; i++){
             if(isNaN(+phone[i])){
-                alert("Please enter a valid phone number")
+                document.body.style.overflow = "hidden"
+                setModal({
+                    title: "Invalid Phone Number",
+                    description: "Please enter a valid Phone Number",
+                    show: true
+                })
                 return
             } 
         }
@@ -26,6 +43,8 @@ function Register() {
     }
     
     return (
+        <div className='register-page'>
+        {modal.show && <Modal modal= {modal} setModal = {setModal}/>}
         <div className='register-form'>
             <h4>Create Account</h4>
             <hr className='register-hr'></hr>
@@ -57,7 +76,7 @@ function Register() {
                     <label className='form-label'>Email</label>
                     <input 
                         type="email"
-                        required
+                        // required
                         value={user.email}
                         placeholder="xyz@gmail.com  "
                         onInput = {(e) => {
@@ -68,7 +87,7 @@ function Register() {
                     <label className='form-label'>Password</label>
                     <input 
                         type="password"
-                        required
+                        // required
                         value={user.password}
                         placeholder='Atleast 6 characters'
                         minLength="6"
@@ -83,6 +102,7 @@ function Register() {
                     <Link to='/login' className='gotologin'>Already have an Account</Link>
                 </div>
             </form>
+        </div>
         </div>
     )
 }

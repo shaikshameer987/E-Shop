@@ -149,13 +149,13 @@ function FilterProducts() {
 						<button 
 							className='pricerange-buttons'
 							onClick={() => {
-								dispatch(pricerange({minPrice: 5000, maxPrice: 10000}))
+								dispatch(pricerange({minPrice: 10000, maxPrice: 20000}))
 							}}	
 						>₹10,000 - ₹20,000</button>
 						<button 
 							className='pricerange-buttons'
 							onClick={() => {
-								dispatch(pricerange({minPrice: 10000, maxPrice: Infinity}))
+								dispatch(pricerange({minPrice: 20000, maxPrice: Infinity}))
 							}}
 						>Over ₹20,000</button>
 						<button 
