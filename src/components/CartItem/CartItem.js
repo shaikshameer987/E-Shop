@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import "./CartItem.css"
-import { changeQty, removeItem } from '../../../redux/reducers/cartReducer'
+import { changeQty, removeItem } from '../../redux/reducers/cartReducer'
 
 function CartItem(props) {
 
@@ -12,9 +12,7 @@ function CartItem(props) {
             let item = props.item
             dispatch(changeQty([item, newQty]))
         }else{
-            let item = props.item
-            let newQty = 0
-            dispatch(changeQty([item, newQty]))
+            dispatch(removeItem(props.item))
         }
     }
 

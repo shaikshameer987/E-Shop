@@ -1,12 +1,13 @@
 import React, { useEffect, useState} from 'react'
 import Header from '../../components/Shared/Header/Header'
 import Navbar from '../../components/Navbar/Navbar'
-import ProductCard from '../../components/Home/ProductCard/ProductCard'
+import ProductCard from '../../components/ProductCard/ProductCard'
 import "./FilterProducts.css"
 import Footer from '../../components/Shared/Footer/Footer'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProducts } from '../../redux/reducers/filterReducer'
+import { category, fetchProducts } from '../../redux/reducers/filterReducer'
 import {setSearchValue} from "../../redux/reducers/searchReducer"
+import { useLocation } from 'react-router-dom'
 import {sort, pricerange, addbrand, removebrand, addsize, removesize} from "../../redux/reducers/filterReducer"
 
 function FilterProducts() {
@@ -16,6 +17,7 @@ function FilterProducts() {
 	const searchValue = useSelector((state => state.search.value))
 	const [collapsebool, setCollpasebool] = useState(false)
 	const [filterbuttonbool, setFilterbuttonbool] = useState(false)
+	const location = useLocation()
 	const dispatch = useDispatch()
  
 	useEffect(() => {
@@ -32,6 +34,7 @@ function FilterProducts() {
 		handleWindowResize()	
 		window.addEventListener("popstate", function() {
 			dispatch(setSearchValue(""))
+			dispatch(category(null))
 		})
 	},[dispatch])
 
@@ -39,6 +42,9 @@ function FilterProducts() {
 		if(filteredProducts.length === 0){
 			console.log("fetching all products")
 			dispatch(fetchProducts())
+		}
+		if(location.pathname === "/filterproducts" && filterState.category === null){
+			dispatch(category("all"))
 		}
 	})
 

@@ -9,7 +9,6 @@
     align-items: center;
     padding-bottom: 20px;
     width: 45%;
-    /* border: 1px solid black; */
 }
 .photo {
     height: 330px;
@@ -21,7 +20,8 @@
 .singleproduct-image {
     height: 100%;
     width: 100%;
-    max-width: 500px;
+    max-width: 480px;
+    mix-blend-mode:darken;
 }
 .product-text {
     /* padding-left: 15px; */
@@ -47,12 +47,13 @@
 }
 .addtocart, .buynow {
     height: 40px;
-    width: 130px;
+    width: 140px;
     border: 0;
     outline: none;
     font-weight: bold;
     color: white;
     font-size: 14px;
+    border-radius: 5px;
 }
 .addtocart  {
     background-color: #ff9f00;

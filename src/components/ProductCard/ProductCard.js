@@ -2,7 +2,7 @@ import React from 'react'
 import './ProductCard.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { singleproduct } from '../../../redux/reducers/filterReducer'
+import { category, singleproduct } from '../../redux/reducers/filterReducer'
 
 function ProductCard(props) {
     const navigate = useNavigate() 
@@ -20,6 +20,7 @@ function ProductCard(props) {
             className="card product-item"
             onClick={() => {
                 dispatch(singleproduct(props.item))
+                dispatch(category(null))
                 navigate("/singleproduct")
             }}
         >

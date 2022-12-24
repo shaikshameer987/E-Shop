@@ -24,13 +24,15 @@ function LogIn() {
 
   	return (
     <div className='loginDiv'>
-		<h4 className='sign-in'>Sign in</h4>
+		<h4 className='sign-in mb-3'>Sign in</h4>
         <hr></hr>
 		<form action=''>
 			<div className='email-div px-2  mb-1'>
 				<label className='form-label dark'>Email</label>
 				<input 
+					className='input'
 					type="email"
+					required
 					onInput = {(e) => {
 						setUserLogin({...userLogin, email : e.target.value})
 					}}></input>
@@ -39,6 +41,8 @@ function LogIn() {
 				<label className='form-label dark'>Password</label>
 				<input 
 					type="password"
+					className='input'
+					required
 					onInput = {(e) => {
 						setUserLogin({...userLogin, password : e.target.value})
 					}}></input>

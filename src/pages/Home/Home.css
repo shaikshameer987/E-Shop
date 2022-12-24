@@ -1,17 +1,14 @@
-.products-container {
+.home-products-container {
     background-color: rgb(191, 250, 230);
     margin: 0 !important;
     padding: 15px 10px !important;
     row-gap: 15px;
 }
-.products-container >* {
+.home-products-container >* {
     padding-left: 7px !important;
     padding-right: 7px !important;
 }
 
-a {
-    text-decoration: none !important; 
-}
 .loading {
     font-size: 40px;
     font-weight: bold;
@@ -21,7 +18,7 @@ a {
     display: inline;
 }
 
-.cardwrapper:hover {
+.home-cardwrapper:hover {
     transform: scale(1.03);
     transition: 100ms;
 }

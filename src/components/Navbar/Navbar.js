@@ -3,22 +3,23 @@ import { Link } from 'react-router-dom'
 import "./Navbar.css"
 import { setSearchValue } from '../../redux/reducers/searchReducer'
 import { category } from '../../redux/reducers/filterReducer'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 function Navbar() {
     const dispatch = useDispatch()
+    const productsCategory = useSelector(state => state.filter.category)
     
     return (
         <nav className='navbar'>
             <button 
-                className='navLink'
+                className={productsCategory === "all" ? "navLink navLink-active" : 'navLink'}
                 onClick={() => {
-                    dispatch(category(""))
+                    dispatch(category("all"))
                     dispatch(setSearchValue(""))
                 }}
             ><Link className='nav-list' to="/filterproducts">All</Link></button>
             <button 
-                className='navLink'
+                className={productsCategory === "clothing" ? "navLink navLink-active" : 'navLink'}
                 onClick={() => {
                     dispatch(category("clothing"))
                     dispatch(setSearchValue(""))
@@ -26,14 +27,14 @@ function Navbar() {
                 }}
             ><Link  className='nav-list' to="/filterproducts">Fashion</Link></button>
             <button
-                className='navLink'
+                className={productsCategory === "electronics" ? "navLink navLink-active" : 'navLink'}
                 onClick={() => {
                     dispatch(category("electronics"))
                     dispatch(setSearchValue(""))
                 }}
             ><Link  className='nav-list' to="/filterproducts">Electronics</Link></button>
             <button 
-                className='navLink'
+                className={productsCategory === "jewelery" ? "navLink navLink-active" : 'navLink'}
                 onClick={() =>{
                     dispatch(category("jewelery"))
                     dispatch(setSearchValue(""))

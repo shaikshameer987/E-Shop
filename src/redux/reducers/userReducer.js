@@ -6,6 +6,8 @@ const initialState = {
     email : "",
     phone : "",
     password : "",
+    gender: "",
+    profilepic: "",
     orders : []
 }
 
@@ -15,6 +17,10 @@ export const userSlice  = createSlice({
     reducers: {
         setName : (state, action) => {
             state.name = action.payload
+        },
+        setGender : (state, action) => {
+            state.gender = action.payload
+            console.log(action.payload)
         },
         setPhone : (state, action) => {
             state.phone = action.payload
@@ -34,6 +40,6 @@ export const userSlice  = createSlice({
     }
 })
 
-export const {setName, setPhone, setEmail, setPassword, setLogin, setLogout} = userSlice.actions
+export const {setName, setGender,   setPhone, setEmail, setPassword, setLogin, setLogout} = userSlice.actions
 
 export default userSlice.reducer

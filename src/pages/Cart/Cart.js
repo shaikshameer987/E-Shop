@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import CartItem from '../../components/Order/CartItem/CartItem'
+import CartItem from '../../components/CartItem/CartItem'
 import Header from '../../components/Shared/Header/Header';
 import Footer from '../../components/Shared/Footer/Footer';
 import Modal from "../../components/Modal/Modal"
 import "./Cart.css"
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,7 +14,6 @@ function Cart() {
     const [modal, setModal] = useState({
         title: "",
         description: "",
-        show: false
     })
     
     useEffect(() => {
@@ -28,7 +26,7 @@ function Cart() {
 
     return (
         <>
-        {modal.show && <Modal modal = {modal} setModal ={setModal}/>}
+        <Modal modal = {modal}/>
         <Header />
         <div className='cartItemsContainer'>
             <div className='cart-header'>
@@ -44,8 +42,9 @@ function Cart() {
                                         setModal({
                                             title: "Cart is Empty",
                                             description: "Please add items in cart before checkout",
-                                            show: true
                                         })
+                                        let btn = document.getElementById("modaltoggler")
+                                        btn.click()
                                     }else{
                                         navigate("/cart/checkout")
                                     }

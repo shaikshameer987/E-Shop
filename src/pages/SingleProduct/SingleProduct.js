@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./SingleProduct.css"
 import Header from '../../components/Shared/Header/Header'
 import Navbar from "../../components/Navbar/Navbar"
@@ -10,15 +10,21 @@ import { useDispatch, useSelector } from 'react-redux'
 function SingleProduct() {
 
 	const singleProduct = useSelector(state => state.filter.singleProduct)
+	const cartItems = useSelector(state => state.cart.cartItems)
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+	const [inCart, setInCart] = useState(false)
 
 	useEffect(() => {
 		if(Object.keys(singleProduct).length === 0){
 			navigate("/filterproducts")
 			return
 		}
-	})
+		let index = cartItems.findIndex((item) => item.id === singleProduct.id)
+		if(index !== -1){
+			setInCart(true)
+		}
+	},[cartItems,navigate,singleProduct])
 	
 	return (
 		Object.keys(singleProduct).length > 0 && 
@@ -34,16 +40,43 @@ function SingleProduct() {
 					<button 
 						className="addtocart"
 						onClick={() => {
-							dispatch(addItem(singleProduct))
+							if(inCart){
+								navigate("/cart")
+							}else{
+								dispatch(addItem(singleProduct))
+								setInCart(true)
+
+							}
 						}}
-					>ADD TO CART</button>
+					>{
+						inCart 
+						?
+						<div className='d-flex align-items-center'>
+							<svg className="me-2 ms-1" width="16" height="16" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg"><path d="M15.32 2.405H4.887C3 2.405 2.46.805 2.46.805L2.257.21C2.208.085 2.083 0 1.946 0H.336C.1 0-.064.24.024.46l.644 1.945L3.11 9.767c.047.137.175.23.32.23h8.418l-.493 1.958H3.768l.002.003c-.017 0-.033-.003-.05-.003-1.06 0-1.92.86-1.92 1.92s.86 1.92 1.92 1.92c.99 0 1.805-.75 1.91-1.712l5.55.076c.12.922.91 1.636 1.867 1.636 1.04 0 1.885-.844 1.885-1.885 0-.866-.584-1.593-1.38-1.814l2.423-8.832c.12-.433-.206-.86-.655-.86" fill="#fff"></path></svg>
+							<p className='m-0'>GO TO CART</p>
+						</div>
+						:
+						<div className='d-flex align-items-center'>
+							<svg className="me-2 ms-1" width="16" height="16" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg"><path d="M15.32 2.405H4.887C3 2.405 2.46.805 2.46.805L2.257.21C2.208.085 2.083 0 1.946 0H.336C.1 0-.064.24.024.46l.644 1.945L3.11 9.767c.047.137.175.23.32.23h8.418l-.493 1.958H3.768l.002.003c-.017 0-.033-.003-.05-.003-1.06 0-1.92.86-1.92 1.92s.86 1.92 1.92 1.92c.99 0 1.805-.75 1.91-1.712l5.55.076c.12.922.91 1.636 1.867 1.636 1.04 0 1.885-.844 1.885-1.885 0-.866-.584-1.593-1.38-1.814l2.423-8.832c.12-.433-.206-.86-.655-.86" fill="#fff"></path></svg>
+							<p className='m-0'>ADD TO CART</p>
+						</div>
+
+					 }
+					 </button>
 					<button 
 						className="buynow"
 						onClick={() => {
 							dispatch(addItem(singleProduct))
 							navigate("/cart")
 						}}
-					>BUY NOW</button>
+					>
+					<div className='d-flex align-items-center justify-content-center'>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-lightning-fill me-1 pt-1" viewBox="0 0 16 16">
+  						<path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z"/>
+					</svg>
+						<p className='m-0'>BUY NOW</p>
+					</div>
+					</button>
 				</div>
 				</div>
 				<div className='product-text'>

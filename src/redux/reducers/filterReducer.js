@@ -7,7 +7,7 @@ export const fetchProducts = createAsyncThunk("filter/fetchProducts", async () =
 
 const initialState = {
     allProducts: [],
-    category: "",
+    category: null,
     filteredProducts : [],
     sort : "",
     brands: [],
@@ -22,7 +22,8 @@ const filterSlice = createSlice({
     initialState,
     reducers: {
         category: (state,action) => {
-            let list = [...state.allProducts].filter((item) => item.category.toLowerCase().includes(action.payload))
+            let cat = action.payload === "all" ? "" : action.payload
+            let list = [...state.allProducts].filter((item) => item.category.toLowerCase().includes(cat))
             state.filteredProducts = list
             state.category = action.payload
             state.sort = "Price: Low to High"
@@ -65,7 +66,8 @@ const filterSlice = createSlice({
             allItems.forEach((item) => item.qty = 1)
             state.allProducts = allItems
             if(state.filteredProducts.length === 0){
-                state.filteredProducts = allItems.filter((item) => item.category.includes(state.category))
+                let cat = state.category === null || state.category === "all" ? "" : state.category
+                state.filteredProducts = allItems.filter((item) => item.category.includes(cat))
             }
         })
     }
