@@ -20,7 +20,7 @@
 .singleproduct-image {
     height: 100%;
     width: 100%;
-    max-width: 480px;
+    max-width: 450px;
     mix-blend-mode:darken;
 }
 .product-text {
@@ -72,5 +72,21 @@
     }
     .product-text {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .buy-buttondiv {
+        position: fixed;
+        bottom: 0px;
+        background-color: rgb(0, 0, 0,0.5);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .addtocart, .buynow {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        height: 50px;
     }
 }

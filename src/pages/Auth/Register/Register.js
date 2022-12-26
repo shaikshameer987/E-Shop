@@ -54,7 +54,7 @@ function Register() {
                         <input 
                             className='input'
                             type="text"
-                            //required
+                            required
                             value={user.name}
                             placeholder='First and Last name'
                             onInput = {(e) => {
@@ -65,7 +65,7 @@ function Register() {
                         <label className='form-label'>Phone</label>
                         <input 
                             type="tel"
-                            //required
+                            required
                             className='input'
                             maxLength="10"
                             value={user.phone}
@@ -78,7 +78,7 @@ function Register() {
                         <label className='form-label'>Email</label>
                         <input 
                             type="email"
-                            //required
+                            required
                             className='input'
                             value={user.email}
                             placeholder="xyz@gmail.com  "
@@ -90,7 +90,7 @@ function Register() {
                         <label className='form-label'>Password</label>
                         <input 
                             type="password"
-                            // required
+                            required
                             className='input'
                             value={user.password}
                             placeholder='Atleast 6 characters'

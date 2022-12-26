@@ -62,3 +62,6 @@
 .addcart-buttondiv button {
     width: 180px;
 }
+.product-price {
+    margin-bottom: 7px;
+}
