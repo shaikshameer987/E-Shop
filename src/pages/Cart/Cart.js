@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 function Cart() {
+    const user = useSelector(state => state.user)
     const navigate = useNavigate()
     const cartItems = useSelector(state => state.cart.cartItems)
     const [totalPrice, setTotalPrice] = useState(0) 
@@ -45,8 +46,16 @@ function Cart() {
                                         })
                                         let btn = document.getElementById("modaltoggler")
                                         btn.click()
-                                    }else{
+                                    }else if(cartItems.length > 0 && user.isLoggedin){
                                         navigate("/cart/checkout")
+                                    }
+                                    else{
+                                        setModal({
+                                            title: "LogIn",
+                                            description: "Please Login before placing an order",
+                                        })
+                                        let btn = document.getElementById("modaltoggler")
+                                        btn.click()    
                                     }
                                 }} 
                         > 
@@ -62,7 +71,7 @@ function Cart() {
                 cartItems.map((item) => (
                     <CartItem 
                         item = {item} 
-                        key = {item.title + item.price}  
+                        key = {item.id}  
                     />
                 )) 
                 :

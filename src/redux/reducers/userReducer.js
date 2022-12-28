@@ -8,7 +8,13 @@ const initialState = {
     password : "",
     gender: "",
     profilepic: "",
-    orders : []
+    orders : [],
+    address: {
+        localAddress : "",
+        city: "",
+        state: "",
+        pincode: ""
+    }
 }
 
 export const userSlice  = createSlice({

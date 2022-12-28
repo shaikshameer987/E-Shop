@@ -64,8 +64,13 @@ function Header() {
                             ?
                             <div className="btn-group profile-dropdown-div">
                                 <button type="button" className="btn btn-secondary user-profile" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img className='profile-pic' alt="" src='https://media.istockphoto.com/id/1223671392/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=s0aTdmT5aU6b8ot7VKm11DeID6NctRCpB755rA1BIP0='></img> 
-                                </button>
+                                    <img 
+                                        className='profile-pic' 
+                                        alt="" 
+                                        src={user.profilepic.length !== 0 ? user.profilepic : 'https://media.istockphoto.com/id/1223671392/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=s0aTdmT5aU6b8ot7VKm11DeID6NctRCpB755rA1BIP0='}
+                                        
+                                    ></img> 
+                                </button>   
                                 <div className='mt-3'>
                                 <ul className="dropdown-menu dropdown-menu-end profile-listitems">
                                     <li>
@@ -98,6 +103,7 @@ function Header() {
                                             type="button"
                                             onClick={() => {
                                                 dispatch(setLogout(false))
+                                                navigate("/")
                                             }}
                                         >
                                             <svg width="16" height="16" className="plist-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#2874F0" stroke="#2874F0" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>
