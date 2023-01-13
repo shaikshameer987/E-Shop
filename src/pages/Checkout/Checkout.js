@@ -196,7 +196,7 @@ function Checkout() {
 								<input type="radio" className='me-3' id='paytm' name="wallet-option"/>
 								<label htmlFor='paytm'>Paytm Wallet</label>
 								<div className='paytm-wallet'>
-									<input type="number" className='me-3 mt-3 px-2 py-1' placeholder='Enter Your Number'/>
+									<input type="number" className='me-3 mt-3 px-2 py-1 modify-input' placeholder='Enter Your Number'/>
 									<button className='button mt-3'>CONTINUE</button>
 								</div>
 								</div>
@@ -204,7 +204,7 @@ function Checkout() {
 								<input type="radio" className='me-3'  id='phonepe' name="wallet-option"/>
 								<label htmlFor='phonepe'>PhonePay Wallet</label>
 								<div className='paytm-wallet'>
-									<input type="number" className='me-3 mt-3 px-2 py-1' placeholder='Enter Your Number'/>
+									<input type="number" className='me-3 mt-3 px-2 py-1 modify-input' placeholder='Enter Your Number'/>
 									<button className='button mt-3'>CONTINUE</button>
 								</div>
 								</div>
@@ -228,7 +228,7 @@ function Checkout() {
 					{
 						(paymentNotCollapsed === "card") && 
 						<div>
-							<input type="number" placeholder='Enter Card Number' className='px-2 mb-3 mt-2'/>
+							<input type="number" placeholder='Enter Card Number' className='px-2 mb-3 mt-2 modify-input'/>
 							<div className='d-flex' style={{flexWrap: "wrap"}}>
 								<div className='card-valid me-3 mb-3'>
 									<span className='me-3'>Valid Thru</span>
@@ -264,7 +264,7 @@ function Checkout() {
 									</select>
 								</div>
 								<div className="cvv mb-3">
-									<input type="number" style={{width: "90px"}} placeholder="CVV" className='px-2'/>
+									<input type="number" style={{width: "90px"}} placeholder="CVV" className='px-2 modify-input'/>
 								</div>
 							</div>
 							<button className='mt-1 button'>PAY 200000</button>

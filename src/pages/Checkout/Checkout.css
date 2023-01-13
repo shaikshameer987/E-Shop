@@ -95,7 +95,7 @@
     border-radius: 5px;
 }
 
-input[type="number"], input[type="text"] {
+.modify-input {
     border: 1px solid gray;
     outline: none;
     height: 35px;
