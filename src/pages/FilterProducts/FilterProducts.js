@@ -105,8 +105,8 @@ function FilterProducts() {
 					<div className='sort-div'>
 						<span className='filter-header'>Filters</span>
 						{
-							!collapsebool && 
-							<button 
+							!collapsebool &&
+							<button
 								className='filter-close'
 								onClick={() => {
 									setFilterbuttonbool(!filterbuttonbool)

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setSearchValue } from '../../../redux/reducers/searchReducer' 
 import { category } from '../../../redux/reducers/filterReducer'
 import { setLogout } from "../../../redux/reducers/userReducer"
+import SearchRecommendation from '../../SearchRecommendation/SearchRecommendation'
 
 function Header() {
     const [value, setValue] = useState("")
@@ -34,7 +35,7 @@ function Header() {
                     <div className='search-bar col-md-6'>
                         <form className='d-flex'>
                             <input 
-                                className='search-input mx-2'
+                                className='search-input'
                                 type="text" 
                                 value = {value}
                                 onInput={(e) => {
@@ -56,6 +57,7 @@ function Header() {
                                 }}
                             >Search</button>
                         </form>
+                        <SearchRecommendation value= {value} setValue= {setValue}/>
                     </div>
                     <div className='nav-list col-md-3 d-flex justify-content-end'>  
                     <ul className="user-list">

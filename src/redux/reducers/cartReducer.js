@@ -19,7 +19,7 @@ const cartSlice = createSlice({
         },
         changeQty : (state,action) => {
             let index = state.cartItems.findIndex((i) => i.id === action.payload[0].id)
-            state.cartItems[index].qty = action.payload[1]  
+            state.cartItems[index].qty = action.payload[1]
         }
     }
 })
