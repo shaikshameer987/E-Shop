@@ -4,9 +4,7 @@ import "./CartItem.css"
 import { changeQty, removeItem } from '../../redux/reducers/cartReducer'
 
 function CartItem(props) {
-
     const dispatch = useDispatch()
-    
     function handleQtyChange(newQty) {
         if(newQty > 0){
             let item = props.item

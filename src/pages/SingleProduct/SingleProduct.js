@@ -6,28 +6,38 @@ import Footer from "../../components/Shared/Footer/Footer"
 import { addItem } from '../../redux/reducers/cartReducer'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import Register from '../../components/Auth/Register/Register'
+import LogIn from '../../components/Auth/LogIn/LogIn'
+import { useParams } from 'react-router-dom'
 
 function SingleProduct() {
-
-	const singleProduct = useSelector(state => state.filter.singleProduct)
+	const params = useParams()
+	const authToOpen = useSelector(state => state.auth.value)
+	const [singleProduct, setSingleProduct] = useState("")
 	const cartItems = useSelector(state => state.cart.cartItems)
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const [inCart, setInCart] = useState(false)
 
 	useEffect(() => {
-		if(Object.keys(singleProduct).length === 0){
-			navigate("/filterproducts")
-			return
-		}
 		let index = cartItems.findIndex((item) => item.id === singleProduct.id)
 		if(index !== -1){
 			setInCart(true)
 		}
 	},[cartItems,navigate,singleProduct])
-	
+
+	useEffect(() => {
+		fetch("../../Products.json")
+			.then(res => res.json())
+			.then((data) => {
+				data.forEach(i => i.qty = 1)
+				let product = data.find((i) => i.id === +(params.id))
+				setSingleProduct(product)
+			})
+	},[params.id])
+
 	return (
-		Object.keys(singleProduct).length > 0 && 
+		singleProduct &&
 		<div className='single-product-page'>
 			<Header />
 			<Navbar />
@@ -125,6 +135,22 @@ function SingleProduct() {
 				</div>
 			</div>
 			<Footer />
+			<>
+				{
+					authToOpen !== "" &&
+					<div className="auth_singleprod_container_outer">
+						<div className="auth_singleprod_container_inner">
+							{
+								authToOpen === "register"
+								?
+								<Register/>
+								:
+								<LogIn/>
+							}
+						</div>
+					</div>
+				}
+			</>
 		</div>
 	)
 }

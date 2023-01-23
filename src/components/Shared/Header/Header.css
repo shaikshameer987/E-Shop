@@ -30,11 +30,15 @@
     list-style: none;
 }
 .user-list-item {
-    padding-right: 20px;
+    padding-right: 15px;
     font-weight: 500;
 }
-.user-nav-link {
+.user_auth_link {
+    margin: 0;
+    padding: 0;
     color: white;
+    background-color: transparent;
+    border: 0;
 }
 .cart-button {
     color: white;
@@ -68,7 +72,7 @@
     flex-direction: column;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 654px) {
     .search-bar {
         order: 3;
         width: 100%;
@@ -139,4 +143,8 @@
 .dropdown-item  {
     padding-top: 11px !important;
     padding-bottom: 8px !important;
+}
+
+.user_auth_link:hover {
+    color: rgb(58, 58, 224);
 }

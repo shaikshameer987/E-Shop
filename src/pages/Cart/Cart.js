@@ -6,8 +6,14 @@ import Modal from "../../components/Modal/Modal"
 import "./Cart.css"
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Register from '../../components/Auth/Register/Register';
+import LogIn from '../../components/Auth/LogIn/LogIn';
+import { fetchProducts } from '../../redux/reducers/filterReducer';
+import { useDispatch } from 'react-redux';
 
 function Cart() {
+    const authToOpen = useSelector(state => state.auth.value)
+    const dispatch = useDispatch()
     const user = useSelector(state => state.user)
     const navigate = useNavigate()
     const cartItems = useSelector(state => state.cart.cartItems)
@@ -23,7 +29,8 @@ function Cart() {
             totalAmount += cartItems[i].price * cartItems[i].qty
         }
         setTotalPrice(totalAmount)
-    },[cartItems])
+        dispatch(fetchProducts())
+    },[cartItems,dispatch])
 
     return (
         <>
@@ -78,10 +85,25 @@ function Cart() {
                 <div style={{width: "100%",marginTop: '20px'}} className="d-flex justify-content-center">
                     <h3>Cart is Empty</h3>
                 </div>
-                
             }
             <br></br>
             <Footer />
+            <>
+				{
+					authToOpen !== "" &&
+					<div className="auth_filter_container_outer">
+						<div className="auth_filter_container_inner">
+							{
+								authToOpen === "register"
+								?
+								<Register/>
+								:
+								<LogIn/>
+							}
+						</div>
+					</div>
+				}
+			</>
         </div>
         </>
     )

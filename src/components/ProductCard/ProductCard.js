@@ -7,8 +7,6 @@ import { category, singleproduct } from '../../redux/reducers/filterReducer'
 function ProductCard(props) {
     const navigate = useNavigate() 
     const dispatch = useDispatch()
-    console.log("Product Card Called")
-
     let ratings = Math.round(props.item.rating.rate)
     let ratingsArr = new Array(ratings).fill("")
     let svg = <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="gold" className="bi bi-star-fill" viewBox="0 0 16 16">
@@ -21,7 +19,7 @@ function ProductCard(props) {
             onClick={() => {
                 dispatch(singleproduct(props.item))
                 dispatch(category(null))
-                navigate("/singleproduct")
+                navigate("/singleproduct/" + props.item.id)
             }}
         >
             <h5 

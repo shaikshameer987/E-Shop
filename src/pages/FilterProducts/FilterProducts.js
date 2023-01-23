@@ -9,9 +9,11 @@ import { category, fetchProducts } from '../../redux/reducers/filterReducer'
 import {setSearchValue} from "../../redux/reducers/searchReducer"
 import { useLocation } from 'react-router-dom'
 import {sort, pricerange, addbrand, removebrand, addsize, removesize} from "../../redux/reducers/filterReducer"
+import Register from '../../components/Auth/Register/Register'
+import LogIn from '../../components/Auth/LogIn/LogIn'
 
 function FilterProducts() {
-
+	const authToOpen = useSelector(state => state.auth.value)
 	const filterState = useSelector(state => state.filter)
 	const {filteredProducts, sort: sortValue, minPrice, maxPrice, brands: prevBrands, size: prevSize} = filterState
 	const searchValue = useSelector((state => state.search.value))
@@ -31,7 +33,7 @@ function FilterProducts() {
 				setFilterbuttonbool(false)
 			}
 		}
-		handleWindowResize()	
+		handleWindowResize()
 		window.addEventListener("popstate", function() {
 			dispatch(setSearchValue(""))
 			dispatch(category(null))
@@ -40,7 +42,6 @@ function FilterProducts() {
 
 	useEffect(() => {
 		if(filteredProducts.length === 0){
-			console.log("fetching all products")
 			dispatch(fetchProducts())
 		}
 		if(location.pathname === "/filterproducts" && filterState.category === null){
@@ -81,7 +82,7 @@ function FilterProducts() {
 
 	return (
 		<div className='category-div'>
-			<Header />
+			<Header/>
 			<Navbar />
 			{
 				filterbuttonbool &&	
@@ -248,6 +249,22 @@ function FilterProducts() {
 				</div>
 			</div>
 			<Footer />
+			<>
+				{
+					authToOpen !== "" &&
+					<div className="auth_filter_container_outer">
+						<div className="auth_filter_container_inner">
+							{
+								authToOpen === "register"
+								?
+								<Register/>
+								:
+								<LogIn/>
+							}
+						</div>
+					</div>
+				}
+			</>
 		</div>
 	)
 }

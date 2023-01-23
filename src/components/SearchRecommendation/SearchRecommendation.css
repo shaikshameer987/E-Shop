@@ -5,6 +5,12 @@
     top: 32px;
     left: 8px;
     width: calc(100% - 16px);
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+
+.search_help::-webkit-scrollbar {
+    display: none;
 }
 
 .search_help > ul {
@@ -14,7 +20,7 @@
 }
 
 .search_help li {
-    padding: 10px 10px;
+    padding: 10px;
     display: flex;
     align-items: center;
     font-size: 14px;
@@ -45,15 +51,6 @@
 .search_filter_button:hover {
     background-color:aliceblue;
 }
-
-/* .search_help > ul:nth-last-child(1) {
-    margin-bottom: 5px;
-}
-
-.search_help > ul:nth-child(1) {
-    margin-top: 5px;
-} */
-
 
 @media screen and (max-width: 650px) {
     .search_help {

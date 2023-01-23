@@ -2,10 +2,11 @@ import React, {useState} from 'react'
 import "./Header.css"
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSearchValue } from '../../../redux/reducers/searchReducer' 
+import { setSearchValue } from '../../../redux/reducers/searchReducer'
 import { category } from '../../../redux/reducers/filterReducer'
 import { setLogout } from "../../../redux/reducers/userReducer"
 import SearchRecommendation from '../../SearchRecommendation/SearchRecommendation'
+import { setAuth } from '../../../redux/reducers/authReducer'
 
 function Header() {
     const [value, setValue] = useState("")
@@ -118,10 +119,24 @@ function Header() {
                             :
                             <>
                             <li className="user-list-item">
-                            <Link className="user-nav-link" to="/register">Register</Link>
+                            <button 
+                                className="user_auth_link"
+                                onClick={() => {
+                                    dispatch(setAuth("register"))
+                                }}
+                            >
+                                Register
+                            </button>
                             </li>
                             <li className="user-list-item">
-                            <Link className="user-nav-link" to="/login">SignIn</Link>
+                            <button 
+                                className="user_auth_link"
+                                onClick={() => {
+                                    dispatch(setAuth("login"))
+                                }}
+                            >
+                                SignIn
+                            </button>
                             </li>
                             </>
                         }        

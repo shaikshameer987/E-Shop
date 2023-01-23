@@ -6,12 +6,15 @@ import Footer from "../../components/Shared/Footer/Footer"
 import "./Home.css"
 import { useSelector, useDispatch } from "react-redux"
 import { fetchProducts } from "../../redux/reducers/productsReducer"
-import { useEffect } from "react"
+import { useEffect} from "react"
 import A from "../../images/A.jpg"
 import B from "../../images/B.jpg"
 import C from "../../images/C.jpg"
+import Register from "../../components/Auth/Register/Register"
+import LogIn from "../../components/Auth/LogIn/LogIn"
 
 function Home() {
+    const authToOpen = useSelector(state => state.auth.value)
     const products = useSelector(state => state.products.products)
     const searchValue = useSelector(state => state.search.value)
     const dispatch = useDispatch()
@@ -19,15 +22,13 @@ function Home() {
 
     useEffect(() => {
         if(products.length === 0){
-            console.log("fetching all products")
             dispatch(fetchProducts())
         }
-        
     })
 
     return (
-        <>
-        <Header />
+        <div style={{height: authToOpen === "" ? "100%" : "100vh", overflow: authToOpen === "" ? "" : "hidden"}}> 
+        <Header/>
         <Navbar />
         <BannerCarousal images = {images}/>
         <div className="home-page">
@@ -35,7 +36,7 @@ function Home() {
                 {products.length ?
                     products.filter((item) => {
                         return searchValue === "" || item.title.toLowerCase().includes(searchValue.toLowerCase()) ? item : null
-                    }) 
+                    })
                     .map((product) => (
                         <div className="home-cardwrapper col-xl-3 col-lg-4 col-sm-6 col-12" key = {product.id}>
                             <ProductCard item = {product} />
@@ -53,7 +54,23 @@ function Home() {
                 </div>
             <Footer />
         </div>
+        <>
+            {
+                authToOpen !== "" &&
+                <div className="auth_container_outer">
+                    <div className="auth_container_inner">
+                        {
+                            authToOpen === "register"
+                            ?
+                            <Register/>
+                            :
+                            <LogIn/>
+                        }
+                    </div>
+                </div>
+            }
         </>
+        </div>
     )
 }
 

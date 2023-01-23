@@ -3,8 +3,11 @@ import "./Checkout.css"
 import Header from "../../components/Shared/Header/Header"
 import CartItem from "../../components/CartItem/CartItem"
 import { useSelector } from 'react-redux'
+import Register from '../../components/Auth/Register/Register'
+import LogIn from '../../components/Auth/LogIn/LogIn'
 
 function Checkout() {
+	const authToOpen = useSelector(state => state.auth.value)
 	const items = useSelector(state => state.cart.cartItems)
 	const user = useSelector(state => state.user)
 	const [bgcolour, setBgColour] = useState("address")
@@ -342,6 +345,22 @@ function Checkout() {
 				</div>
 			</div>
 		</div>
+			<>
+				{
+					authToOpen !== "" &&
+					<div className="auth_checkout_container_outer">
+						<div className="auth_checkout_container_inner">
+							{
+								authToOpen === "register"
+								?
+								<Register/>
+								:
+								<LogIn/>
+							}
+						</div>
+					</div>
+				}
+			</>
 		</>
     )
 }
