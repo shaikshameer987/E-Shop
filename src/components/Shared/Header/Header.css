@@ -72,7 +72,7 @@
     flex-direction: column;
 }
 
-@media screen and (max-width: 654px) {
+@media screen and (max-width: 660px) {
     .search-bar {
         order: 3;
         width: 100%;
