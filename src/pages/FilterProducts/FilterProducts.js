@@ -241,7 +241,7 @@ function FilterProducts() {
 							return searchValue === "" || item.title.toLowerCase().includes(searchValue.toLowerCase()) ? item : null
 						}) 
 						.map((product) => (
-							<div className="cardwrapper col-lg-4 col-md-6" key = {product.id}>
+							<div className="cardwrapper col-lg-4 col-md-6 col-12" key = {product.id}>
 								<ProductCard item = {product} />
 							</div>
 						))
