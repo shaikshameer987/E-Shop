@@ -2,7 +2,7 @@ import React from 'react'
 import './ProductCard.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { category, singleproduct } from '../../redux/reducers/filterReducer'
+import { category } from '../../redux/reducers/filterReducer'
 
 function ProductCard(props) {
     const navigate = useNavigate() 
@@ -17,7 +17,6 @@ function ProductCard(props) {
         <div 
             className="card product-item"
             onClick={() => {
-                dispatch(singleproduct(props.item))
                 dispatch(category(null))
                 navigate("/singleproduct/" + props.item.id)
             }}
@@ -40,9 +39,9 @@ function ProductCard(props) {
                     ))
                 } &nbsp; {props.item.rating.count}</p>
                 <p className="product-price">₹ {props.item.price}</p>
-                <div className='desc-div'>
+                {/* <div className='desc-div'>
                     <p className="product-description">{props.item.description}</p>
-                </div>
+                </div> */}
             </div>
         </div>
     )

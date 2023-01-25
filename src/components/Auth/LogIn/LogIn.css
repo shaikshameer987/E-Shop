@@ -48,15 +48,3 @@
     padding: 3px 10px; 
     font-size: 14px !important;
 }
-
-.gotologinDiv {
-    display: flex;
-    justify-content: center;
-}
-
-.gotologin {
-    outline: none;
-    border: 0;
-    background-color: transparent;
-    color: blue;
-}

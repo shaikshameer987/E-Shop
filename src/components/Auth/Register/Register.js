@@ -1,45 +1,32 @@
-import React, { useEffect, useRef } from 'react'
-// import {useState} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import "./Register.css"
-import {setName, setPhone, setEmail, setPassword} from "../../../redux/reducers/userReducer"
-import { useDispatch, useSelector } from 'react-redux';
+import { setUser} from "../../../redux/reducers/userReducer"
+import { useDispatch } from 'react-redux';
 import { setAuth } from '../../../redux/reducers/authReducer';
-// import Modal from '../../../components/Modal/Modal';
 
 function Register() {
 
+    const [registerUser, setRegisterUser] = useState({
+        name: "",
+        phone: "",
+        email: "",
+        password: ""
+    })
     const firstInputRef = useRef()
-    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
-        // const [modal, setModal] = useState({
-        //     title: "",
-        //     description: ""
-        // }
 
     function handleFormSubmit(event) {
         event.preventDefault()
-        if(/\d/.test(user.name)){
-            // setModal({
-            //     title: "Invalid Name",
-            //     description: "Please inlcude only alphabets in the name",
-            //     show: true
-            // })
-            // let btn = document.getElementById("modaltoggler")
-            // btn.click()
-            return 
+        if(/\d/.test(registerUser.name)){
+            return
         }
-        let phone = user.phone
+        let phone = registerUser.phone
         for(let i = 0; i < phone.length; i++){
             if(isNaN(+phone[i])){
-                // setModal({
-                //     title: "Invalid Phone Number",
-                //     description: "Please enter a valid Phone Number",
-                // })
-                // let btn = document.getElementById("modaltoggler")
-                // btn.click()
                 return
             }
         }
+        dispatch(setUser(registerUser))
         dispatch(setAuth("login"))
     }
     useEffect(() => {
@@ -48,15 +35,14 @@ function Register() {
 
     return (
         <div className='register-page'>
-            {/* <Modal  modal={modal}/> */}
             <div className='register-form' onKeyDown={(e) => {
                 // handleKeyDown(e)
             }}>
                 <h4>Create Account</h4>
-                <button 
+                <button
                     className='register_div_close'
                     onClick={() => {
-                        dispatch(setAuth(""))   
+                        dispatch(setAuth(""))
                     }}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
@@ -69,68 +55,62 @@ function Register() {
                 }}>
                     <div className='name'>
                         <label className='form-label'>Your name</label>
-                        <input 
+                        <input
                             className='register_input'
                             type="text"
                             required
                             ref={firstInputRef}
-                            value={user.name}
+                            value={registerUser.name}
                             placeholder='First and Last name'
-                            onInput = {(e) => {
-                                dispatch(setName(e.target.value))
-                            }}></input>
+                            onChange = {(e) => {
+                                setRegisterUser({...registerUser, name: e.target.value})
+                            }}
+                        />
                     </div>
                     <div className='phone-container marg'>
                         <label className='form-label'>Phone</label>
-                        <input 
+                        <input
                             type="tel"
                             required
                             className='register_input'
                             maxLength="10"
-                            value={user.phone}
+                            value={registerUser.phone}
                             placeholder='Mobile number'
-                            onInput = {(e) => {
-                                dispatch(setPhone(e.target.value))
-                            }}></input>
+                            onChange = {(e) => {
+                                setRegisterUser({...registerUser, phone: e.target.value})
+                            }}
+                        />
                     </div>
                     <div className='email-container marg'>
                         <label className='form-label'>Email</label>
-                        <input 
+                        <input
                             type="email"
                             required
                             className='register_input'
-                            value={user.email}
+                            value={registerUser.email}
                             placeholder="xyz@gmail.com  "
-                            onInput = {(e) => {
-                                dispatch(setEmail(e.target.value))
-                            }}></input>
+                            onChange = {(e) => {
+                                setRegisterUser({...registerUser, email: e.target.value})
+                            }}
+                        />
                     </div>
                     <div className='password-container marg'>
                         <label className='form-label'>Password</label>
-                        <input 
+                        <input
                             type="password"
                             required
                             className='register_input'
-                            value={user.password}
+                            value={registerUser.password}
                             placeholder='Atleast 6 characters'
                             minLength="6"
-                            onInput = {(e) => {
-                                dispatch(setPassword(e.target.value))
-                            }}></input>
+                            onChange = {(e) => {
+                                setRegisterUser({...registerUser, password: e.target.value})
+                            }}
+                        />
                     </div>
                     <div className='button-container marg'>
                         <button type='submit' className='btn btn-success'>
                             Register
-                        </button>
-                    </div>
-                    <div className='gotoregisterDiv marg'>
-                        <button 
-                            className='gotoregister'
-                            onClick={() => {
-                                dispatch(setAuth("login"))
-                            }}
-                        >
-                            Already have an Account
                         </button>
                     </div>
                 </form>

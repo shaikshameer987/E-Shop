@@ -11,10 +11,14 @@ function LogIn() {
 	const user = useSelector(state => state.user)
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const [userLogin, setUserLogin] = useState({})
-	
+	const [userLogin, setUserLogin] = useState({
+		email: "",
+		password: ""
+	})
+
 	const handleLogin = (e) => {
 		e.preventDefault()
+		console.log(user, userLogin)
 		if(userLogin.email === user.email && userLogin.password === user.password){
 			dispatch(setLogin(true))
 			dispatch(setAuth(""))
@@ -22,8 +26,8 @@ function LogIn() {
 		}else{
 			return
 		}
-	}    
-	
+	}
+
 	useEffect(() => {
         firstInput.current.focus()
     },[])
@@ -31,7 +35,7 @@ function LogIn() {
   	return (
     <div className='loginDiv'>
 		<h4 className='sign-in mb-3'>Sign in</h4>
-		<button 
+		<button
             className='login_div_close'
             onClick={() => {
                 dispatch(setAuth(""))
@@ -65,25 +69,15 @@ function LogIn() {
 					onInput = {(e) => {
 						setUserLogin({...userLogin, password : e.target.value})
 					}}></input>
-			</div>   
-			<div className='submitDiv px-2 mb-4'>
+			</div>
+			<div className='submitDiv px-2 mb-2'>
 				<input
 					type="submit"
 					className='btn btn-success'
 					name='LogIn'
 				/>
 			</div>
-			<div className='gotologinDiv'>
-				<button 
-                        className='gotoregister'
-                        onClick={() => {
-							dispatch(setAuth("register"))
-                        }}
-                >
-                    Don't have an Account
-                </button>
-			</div>  
-		</form>   
+		</form>
     </div>
   )
 }

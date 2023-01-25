@@ -38,7 +38,7 @@ function SingleProduct() {
 
 	return (
 		singleProduct &&
-		<div className='single-product-page'>
+		<div className='single-product-page' style={{height: authToOpen === "" ? "100%" : "100vh", overflow: authToOpen === "" ? "" : "hidden"}}>
 			<Header />
 			<Navbar />
 			<div className='product-details d-flex'>

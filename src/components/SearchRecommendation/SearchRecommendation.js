@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import "./SearchRecommendation.css"
 import { useNavigate } from 'react-router-dom'
-import {singleproduct} from "../../redux/reducers/filterReducer"
 import { fetchProducts } from '../../redux/reducers/productsReducer'
 
 function SearchRecommendation({value, setValue}) {
@@ -26,9 +25,8 @@ function SearchRecommendation({value, setValue}) {
                             className='search_filter_button'
                             key={index}
                             onClick={() => {
-                                dispatch(singleproduct(product))
                                 setValue("")
-                                navigate("/singleproduct")
+                                navigate("/singleproduct/" + product.id)
                             }}
                         >
                             <li>

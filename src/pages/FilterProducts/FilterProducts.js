@@ -81,7 +81,7 @@ function FilterProducts() {
 	filterProducts()
 
 	return (
-		<div className='category-div'>
+		<div className='category-div' style={{height: authToOpen === "" ? "100%" : "100vh", overflow: authToOpen === "" ? "" : "hidden"}}>
 			<Header/>
 			<Navbar />
 			{

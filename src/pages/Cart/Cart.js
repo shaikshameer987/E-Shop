@@ -33,7 +33,7 @@ function Cart() {
     },[cartItems,dispatch])
 
     return (
-        <>
+        <div style={{height: authToOpen === "" ? "100%" : "100vh", overflow: authToOpen === "" ? "" : "hidden"}}>
         <Modal modal = {modal}/>
         <Header />
         <div className='cartItemsContainer'>
@@ -105,7 +105,7 @@ function Cart() {
 				}
 			</>
         </div>
-        </>
+        </div>
     )
 }
 

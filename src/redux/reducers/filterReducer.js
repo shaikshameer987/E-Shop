@@ -13,8 +13,7 @@ const initialState = {
     brands: [],
     minPrice : 0,
     maxPrice: Infinity,
-    size: [],
-    singleProduct: {}
+    size: []
 }
 
 const filterSlice = createSlice({
@@ -55,9 +54,6 @@ const filterSlice = createSlice({
         },
         setall : (state) => {
             state.filteredProducts = [...state.allProducts]
-        },
-        singleproduct : (state, action) => {
-            state.singleProduct = action.payload
         }
     },
     extraReducers: (builder) => {

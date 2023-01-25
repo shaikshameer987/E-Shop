@@ -10,7 +10,7 @@ const initialState = {
     profilepic: "",
     orders : [],
     address: {
-        localAddress : "",
+        houseNo : "",
         city: "",
         state: "",
         pincode: ""
@@ -21,6 +21,12 @@ export const userSlice  = createSlice({
     name: "user",
     initialState,
     reducers: {
+        setUser : (state, action) => {
+            const {name, email, password} = action.payload
+            state.name = name
+            state.email = email
+            state.password = password
+        },
         setName : (state, action) => {
             state.name = action.payload
         },
@@ -46,6 +52,6 @@ export const userSlice  = createSlice({
     }
 })
 
-export const {setName, setGender,   setPhone, setEmail, setPassword, setLogin, setLogout} = userSlice.actions
+export const {setName,setUser, setGender,   setPhone, setEmail, setPassword, setLogin, setLogout} = userSlice.actions
 
 export default userSlice.reducer
